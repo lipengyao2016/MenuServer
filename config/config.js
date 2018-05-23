@@ -4,7 +4,7 @@ let config = {
     //服务器配置
     server: {
         domain : 'localhost',
-        port : 5702,
+        port : 6001,
     },
     //debug 为true时，用于本地调试
     debug : false,
@@ -14,10 +14,10 @@ let config = {
     knex: {
         client: 'mysql',
         connection: {
-            host : '192.168.7.150',
+            host : '192.168.7.6',
             user : 'root',
             password : '123456',
-            database : 'GoodsServerDB',
+            database : 'MenuServerDB',
             port : 3306
         },
         pool : { min : 0, max : 10},

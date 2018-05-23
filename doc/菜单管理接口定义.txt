@@ -1,0 +1,39 @@
+menuServer(菜单管理)
+
+1.组织  menuOrganizations
+ /api/v1/menuOrganizations                                       post:create  get:list
+ /api/v1/menuOrganizations/:menuOrganizationUUID                 post:update  get:retrieve  
+ 
+ 
+2.菜单分组   menuGroups
+ /api/v1/menuOrganizations/:menuOrganizationUUID/menuGroups                                post:create  get:list
+ /api/v1/menuOrganizations/:menuOrganizationUUID/menuGroups/:menuGroupUUID                 post:update  get:retrieve 
+ 
+ 
+3.菜单 menus 
+ /api/v1/menuOrganizations/:menuOrganizationUUID/menuGroups/:menuGroupUUID/menus/                                 post:create  get:list
+ /api/v1/menuOrganizations/:menuOrganizationUUID/menuGroups/:menuGroupUUID/menus/:menuUUID                        post:update  get:retrieve 
+ 
+ 
+4.操作   operators
+ /api/v1/menuOrganizations/:menuOrganizationUUID/menuGroups/:menuGroupUUID/menus/:menuUUID/operators                   post:create  get:list
+ /api/v1/menuOrganizations/:menuOrganizationUUID/menuGroups/:menuGroupUUID/menus/:menuUUID/operators/:operatorUUID     post:update  get:retrieve 
+
+
+ 
+
+业务接口
+
+  1.创建货物包裹 /api/v1/goodsPackages       post
+  request:
+  {
+     packageId:'65874251',   //可不传，内部产生。
+     deliveryHref: 'http://192.168.7.150:5027/api/v1.0.0/customers/Hyh9P6DdMLL5BaSubP3oAw', //投递客户链接。
+  }
+  
+  response:
+  {
+    
+  }
+ 
+  

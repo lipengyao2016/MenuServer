@@ -1,24 +1,24 @@
 apiVersion: apps/v1 
 kind: Deployment
 metadata:
-  name: goods-server
+  name: menu-server
   labels:
-    server: goods
+    server: menu
 spec:
   selector:
     matchLabels:
-      server: goods
+      server: menu
   replicas: 2 
   template: 
     metadata:
       labels:
-        server: goods
+        server: menu
     spec:
       containers:
-      - name: goods-server
-        image: docker-registry.icarcloud.net:8088/server/goodsserver:1.0.0
+      - name: menu-server
+        image: docker-registry.icarcloud.net:8088/server/menuserver:1.0.0
         ports:
-        - containerPort: 6702
+        - containerPort: 6000
         
         
 ---
@@ -26,17 +26,17 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: goods-server
+  name: menu-server
   labels:
-    server: goods
+    server: menu
 spec:
   selector:
-    server: goods
+    server: menu
   type: NodePort
   # clusterIP: 10.106.100.2
   ports:
   - name: http
     protocol: TCP
-    nodePort: 30003
-    port: 6702
-    targetPort: 6702
+    nodePort: 31000
+    port: 6000
+    targetPort: 6000

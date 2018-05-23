@@ -2,100 +2,80 @@
  * Created by Administrator on 2018/1/15.
  */
 module.exports = {
-    // 目录
-    "directory":{
+    // 组织
+    "menuOrganization":{
         rest_api: 'batch' ,
         params: {
             name:{type:'string'},
             description:{type:'string'},
             status:{type:'string',value:'enabled'},
-            merchant: {type: 'url'},
+            application: {type: 'url'},
             createdAt: {type:'time'},
             modifiedAt:{type:'time'},
         },
     },
 
-    // 货物类型。
-    "goodsType": {
+    // 菜单分组。
+    "menuGroup": {
         rest_api: /*'base'*/ 'batch',
-        //super: 'directory',
+        super: 'menuOrganization',
         params: {
             name:{type:'string'},
             description:{type:'string'},
-            typeCode:{type:'string'},
-            level: {type:'number',value:0},
-
-            carbinRadio: {type:'number',value:0},
-            waterRadio: {type:'number',value:0},
-            costRadio: {type:'number',value:0},
-
+            upLevelMenuGroupUUID:{type:'string'},
+            uiOrder: {type:'number',value:0},
             status:{type:'string',value:'enabled'},
             createdAt: {type:'time'},
             modifiedAt:{type:'time'},
         },
     },
 
-    // 货物包裹
-    "goodsPackage":{
+    // 菜单
+    "menu":{
         rest_api: 'batch',
-        super: 'directory',
+        super: 'menuGroup',
 
         extend_api: [
            // {name: 'create', method: 'POST', url:'/api/:version/merchants/:merchantUUID/customers'},
-            {name: 'listPackageTotalStatistics', method: 'GET', url:'/api/:version/goodsPackageTotalStatistics'},
+           // {name: 'listPackageTotalStatistics', method: 'GET', url:'/api/:version/goodsPackageTotalStatistics'},
         ],
         params: {
-            packageId: {type: 'string'},
+            description: {type: 'string'},
             name: {type: 'string'},
-            quatity: {type: 'number',value:0},
-            weight: {type: 'number',value:0},
-            delivery: {type: 'url'},
-            deliverySource: {type: 'string'},
-            status:{type:'string',value:'created'},
+            type: {type: 'number',value:0},
+            number: {type: 'string'},
+            menuId: {type: 'string'},
+            iconHref: {type: 'string'},
+            uiOrder: {type: 'number',value:0},
+
+            menuOrganization: {type: 'url',isSaveHref:false},
+            status:{type:'string',value:'enabled'},
             createdAt: {type:'time'},
             modifiedAt:{type:'time'},
         },
     },
 
-    // 货物
-    "goods":{
+    // 操作
+    "operator":{
         rest_api: 'batch',
-        super: 'goodsPackage',
+        super: 'menu',
 
         extend_api: [
             // {name: 'create', method: 'POST', url:'/api/:version/merchants/:merchantUUID/customers'},
-            {name: 'listGoodsTotalStatistics', method: 'GET', url:'/api/:version/goodsTotalStatistics'},
-            {name: 'listGoodsWeightStatistics', method: 'GET', url:'/api/:version/goodsWeightStatistics'},
-            {name: 'listGoodsCostStatistics', method: 'GET', url:'/api/:version/goodsCostStatistics'},
+            //{name: 'listGoodsTotalStatistics', method: 'GET', url:'/api/:version/goodsTotalStatistics'},
+           // {name: 'listGoodsWeightStatistics', method: 'GET', url:'/api/:version/goodsWeightStatistics'},
+           // {name: 'listGoodsCostStatistics', method: 'GET', url:'/api/:version/goodsCostStatistics'},
         ],
 
         params: {
-            goodsType: {type: 'url',isSaveHref:false},
-            sortedRecord: {type: 'url',isSaveHref:false},
             name: {type: 'string'},
-            weight: {type: 'number',value:0},
-            cost: {type: 'number',value:0},
-            carbin: {type: 'number',value:0},
-            water: {type: 'number',value:0},
-            status:{type:'string',value:'created'},
+            operatorId: {type: 'string'},
+            uiOrder: {type: 'number',value:0},
+            status:{type:'string',value:'enabled'},
             createdAt: {type:'time'},
             modifiedAt:{type:'time'},
         },
     },
 
-
-    // 分拣记录。
-    "sortedRecord":{
-        rest_api: 'batch',
-        super: 'goodsPackage',
-        params: {
-            sortedAddress: {type: 'string'},
-            sortedOperator: {type: 'string'},
-            sortedAt: {type: 'time'},
-            sortedPlace: {type: 'string'},
-            createdAt: {type:'time'},
-            modifiedAt:{type:'time'},
-        },
-    },
 
 };

@@ -9,64 +9,62 @@ const utils = require('../common/utils');
 const request = require('common-request').request;
 
 
-describe('directory Test Case:',()=>{
-    let directoryTestCase = {
-        name:'simple 444 directory',
-        description:'goods 444 description info',
-        merchantHref:'http://localhost:5006/api/v1.0.0/merchants/DQZNqVpEbFxyZ7ayW7x2yA',
+describe('menuOrganizations Test Case:',()=>{
+    let menuOrganizationsTestCase = {
+        name:'BQZNqVpEbFxyZ7ayW7x2yA',
+        description:'345dfsf',
+        applicationHref:'http://localhost:5000/api/v1.0.0/applications/BQZNqVpEbFxyZ7ayW7x2yA',
     };
     let applicationUUID = 'AppUUIDForTestCase';
-    let directoryUUID = null;
+    let menuOrganizationsUUID = null;
 
     let tenantUUID = null;
     let tenantURL = null;
 
     tenantURL = url ;
 
-  //  directoryUUID = '4po7G4eCiSztrYzqsyLisg';
+  //  menuOrganizationsUUID = '4po7G4eCiSztrYzqsyLisg';
 
     describe('create test case:',  ()=>{
-        it('success create an directory',  ()=> {
+        it('success create an menuOrganizations',  ()=> {
             //this.timeout(0);
 
-
-
-            return request.post(`${tenantURL}/directories`,directoryTestCase).then( ( {statusCode, body, headers, request} )=>{
+            return request.post(`${tenantURL}/menuOrganizations`,menuOrganizationsTestCase).then( ( {statusCode, body, headers, request} )=>{
                 expect(statusCode).to.equal(201);
                 expect(headers['content-type']).to.equal('application/json; charset=utf-8');
-                expect(body.name).to.equal(directoryTestCase.name);
+                expect(body.name).to.equal(menuOrganizationsTestCase.name);
 
-                directoryUUID = utils.getResourceUUIDInURL(body.href,'directories');
+                menuOrganizationsUUID = utils.getResourceUUIDInURL(body.href,'menuOrganizations');
 
-                console.log('directorys test  create  directoryUUID  :' + directoryUUID +
+                console.log('menuOrganizationss test  create  menuOrganizationsUUID  :' + menuOrganizationsUUID +
                     ' body:'+JSON.stringify(body,null,2));
             });
         });
     });
     describe('retrieve test case:', function () {
-        it('success retrieve an directory  ', function () {
+        it('success retrieve an menuOrganizations  ', function () {
             //this.timeout(0);
 
-            return request.get(`${tenantURL}/directories/${directoryUUID}`,{}).then( ( { statusCode,body,headers,request} )=>{
+            return request.get(`${tenantURL}/menuOrganizations/${menuOrganizationsUUID}`,{}).then( ( { statusCode,body,headers,request} )=>{
 
-                console.log('directorys test retrieve   :' + JSON.stringify(body,null,2));
+                console.log('menuOrganizationss test retrieve   :' + JSON.stringify(body,null,2));
 
                 expect(statusCode).to.equal(200);
                 expect(headers['content-type']).to.equal('application/json; charset=utf-8');
                 //expect(uriReg.applicationURIReg.test(res.headers['location'])).to.be.true;
-               // expect(body.name).to.equal(directoryTestCase.name);
+               // expect(body.name).to.equal(menuOrganizationsTestCase.name);
             });
         });
     });
     describe('update test case:', function () {
-        it('success update an directory', function () {
+        it('success update an menuOrganizations', function () {
             //this.timeout(0);
-           // directoryUUID = '7O1PwyXNuUOEXxvRfvbyrQ';
+           // menuOrganizationsUUID = '7O1PwyXNuUOEXxvRfvbyrQ';
             let updateInfo = {};
             updateInfo.description = 'lpy descript';
-            return request.post(`${tenantURL}/directories/${directoryUUID}`,updateInfo).then( ( { statusCode,body,headers,request} )=>{
+            return request.post(`${tenantURL}/menuOrganizations/${menuOrganizationsUUID}`,updateInfo).then( ( { statusCode,body,headers,request} )=>{
 
-                console.log('directorys test update   :' + JSON.stringify(body,null,2));
+                console.log('menuOrganizationss test update   :' + JSON.stringify(body,null,2));
 
                 expect(statusCode).to.equal(200);
                 expect(headers['content-type']).to.equal('application/json; charset=utf-8');
@@ -76,7 +74,7 @@ describe('directory Test Case:',()=>{
         });
     });
     describe('list test case:', function () {
-        it('list directorys by all', function () {
+        it('list menuOrganizationss by all', function () {
             //this.timeout(0);
             let merchantLists = [
                 'RQZNqVpEbFxyZ7ayW7x2yA',
@@ -89,9 +87,9 @@ describe('directory Test Case:',()=>{
                 createdAt:'[,2018-04-18 18:13:28]'*/
             };
 
-            return request.get(`${tenantURL}/directories/listAll`,qs).then( ( { statusCode,body,headers,request} )=>{
+            return request.get(`${tenantURL}/menuOrganizations/listAll`,qs).then( ( { statusCode,body,headers,request} )=>{
 
-                console.log('directorys test list   :' + JSON.stringify(body,null,2));
+                console.log('menuOrganizationss test list   :' + JSON.stringify(body,null,2));
 
                 expect(statusCode).to.equal(200);
                 expect(headers['content-type']).to.equal('application/json; charset=utf-8');
@@ -100,7 +98,7 @@ describe('directory Test Case:',()=>{
         });
 
 
-        it('list directorys  ', function () {
+        it('list menuOrganizationss  ', function () {
             //this.timeout(0);
             let merchantLists = [
                 'RQZNqVpEbFxyZ7ayW7x2yA',
@@ -112,9 +110,9 @@ describe('directory Test Case:',()=>{
                                limit:1,
                                createdAt:'[,2018-04-18 18:13:28]'*/
             };
-            return request.get(`${tenantURL}/directories`,qs).then( ( { statusCode,body,headers,request} )=>{
+            return request.get(`${tenantURL}/menuOrganizations`,qs).then( ( { statusCode,body,headers,request} )=>{
 
-                console.log('directorys test list   :' + JSON.stringify(body,null,2));
+                console.log('menuOrganizationss test list   :' + JSON.stringify(body,null,2));
 
                 expect(statusCode).to.equal(200);
                 expect(headers['content-type']).to.equal('application/json; charset=utf-8');
@@ -124,10 +122,10 @@ describe('directory Test Case:',()=>{
     });
 
     describe('delete test case:',()=>{
-        it('success delete an directory', function () {
+        it('success delete an menuOrganizations', function () {
             //this.timeout(0);
 
-          /*  return request.delete(`${tenantURL}/directories/${directoryUUID}`).then( ( { statusCode,body,headers,request} )=>{
+          /*  return request.delete(`${tenantURL}/menuOrganizations/${menuOrganizationsUUID}`).then( ( { statusCode,body,headers,request} )=>{
                 expect(statusCode).to.equal(204);
             });*/
         });
