@@ -1,0 +1,101 @@
+GoodsServer(货物管理)
+
+1.目录  directory
+ /api/v1/directories                                post:create  get:list
+ /api/v1/directories/:directoryUUID                 post:update  get:retrieve  
+ 
+ 
+2.货物类型   goodsTypes
+ /api/v1/goodsTypes                                post:create  get:list
+ /api/v1/goodsTypes/:goodsTypeUUID                 post:update  get:retrieve 
+ 
+ 
+3.货物包裹 goodsPackages 
+ /api/v1/directories/:directoryUUID/goodsPackages/                                 post:create  get:list
+ /api/v1/directories/:directoryUUID/goodsPackages/:goodsPackageUUID                 post:update  get:retrieve 
+ 
+ 
+4.货物   goods
+ /api/v1/directories/:directoryUUID/goodsPackages/:goodsPackageUUID/goods                     post:create  get:list
+ /api/v1/directories/:directoryUUID/goodsPackages/:goodsPackageUUID/goods/:goodUUID           post:update  get:retrieve 
+ /api/v1/goodsTypes/:goodsTypeUUID/goods                                                      get:list
+
+
+5.分拣记录   sortedRecords
+ /api/v1/directories/:directoryUUID/goodsPackages/:goodsPackageUUID/sortedRecords                         post:create  get:list
+ /api/v1/directories/:directoryUUID/goodsPackages/:goodsPackageUUID/sortedRecords/:sortedRecordUUID       post:update  get:retrieve 
+ 
+
+GoodsBusiServer(货物管理业务服务)
+
+
+  1.创建货物包裹 /api/v1/goodsPackages       post
+  request:
+  {
+     packageId:'65874251',   //可不传，内部产生。
+     deliveryHref: 'http://192.168.7.150:5027/api/v1.0.0/customers/Hyh9P6DdMLL5BaSubP3oAw', //投递客户链接。
+  }
+  
+  response:
+  {
+    
+  }
+ 
+  2.货物分拣 /api/v1/sortGoods              post
+	  request:
+	  {
+	      packageId:'65874251',   //货物包裹的二维码所对应的包裹ID.
+	      goods:                  //分拣后每种类型的称重信息。
+	      [
+	            {
+	              type:'01',     //01:衣服，02:裤子，03:包包,04:鞋子,05:其它。
+	              weight:2.6,    //重量，单位kg
+	             }
+	       ]，
+	       sortedAt:'2017-8-5 10:00:00' //分拣时间。
+	       sortedAddress:'baoan'        //分拣地址。
+	       sortedOperator:'li'          //分拣人。
+	       sortedPlace:'22014',         //分拣的工位。
+	  }
+	  
+	  response:
+	  http :statusCode,成功返回200,错误返回其它。
+	  body:
+	  {
+	    packageId:'65874251',
+	    retCode:'success',
+	  }
+	  
+  
+  3.统计包裹重量 /api/v1/goodsWeightStatistics              get
+  
+  request
+  {
+     createdAt:'[2017-01-22 18:13:28,2018-05-18 18:13:28]',
+     weightArrays:[500,3000,6000,10000,30000],
+  }
+ 
+ 
+   4.统计包裹价值 /api/v1/goodsCostStatistics              get
+  
+  request
+  {
+     createdAt:'[2017-01-22 18:13:28,2018-05-18 18:13:28]',
+     costArrays:[1000,5000,10000,20000,50000],
+  }
+ 
+ 
+ 
+ 1.分拣系统 包裹，货物，碳排放，价值，
+ 2.客户信息查询(微信号，姓名，区域，电话号码)，包裹查询(对接第三方物流,第三方平台)，
+ 3.报表
+ 4.分拣员员工管理，工位，台秤
+ 5.客户端信息反馈
+ 
+ 5.仓储管理，
+
+
+https://admin-erp.meituan.com
+编号： 536683
+username: sailing666
+password: qwe123poi987

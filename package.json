@@ -1,0 +1,34 @@
+{
+  "name": "CabinetServer",
+  "version": "1.0.0",
+  "description": "CabinetServer",
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.icarcloud.net:iCarCloud/BCS/BCPlatform/IntelligentCabinet/CabinetServer.git"
+  },
+  "main": "server.js",
+  "keywords": [
+    "rest",
+    "router",
+    "koa",
+    "http",
+    "middleware"
+  ],
+  "author": "lipy",
+  "license": "MIT",
+  "dependencies": {
+    "chai": "^4.1.2",
+    "common-request": "0.0.1",
+    "componet-service-framework": "^1.0.3",
+    "develop-utils": "0.0.6",
+    "koa": "^2.4.1",
+    "koa-json-url-expand": "^1.0.1",
+    "koa-logger": "^3.1.0",
+    "koa-qs": "^2.0.0",
+    "log4js": "^1.1.1",
+    "mocha": "^4.1.0",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2",
+    "rest-router-model": "^1.2.3"
+  }
+}

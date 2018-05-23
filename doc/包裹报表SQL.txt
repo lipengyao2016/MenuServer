@@ -1,0 +1,16 @@
+
+SELECT DATE_FORMAT(gp.createdAt,'%Y') as orderDate,count(id) as count from GoodsPackages  gp where gp.createdAt  >= '2017-04-01 00:00:00'
+and gp.createdAt <= '2018-06-27 23:59:59' GROUP BY orderDate order by orderDate ASC,count DESC;
+
+
+SELECT DATE_FORMAT(gs.createdAt,'%Y') as orderDate,sum(gs.weight) as count from Goods  gs where gs.createdAt  >= '2017-04-01 00:00:00'
+and gs.createdAt <= '2018-06-27 23:59:59' GROUP BY orderDate order by orderDate ASC,count DESC;
+
+
+SELECT SUM(CASE WHEN packageWeight <= 500 THEN 1 ELSE 0 END) AS firstcnt,
+SUM(CASE WHEN packageWeight>500 AND packageWeight <= 3000 THEN 1 ELSE 0 END )AS secondcnt,
+SUM(CASE WHEN packageWeight>3000 AND packageWeight <=6000 THEN 1 ELSE 0 END )AS threecnt,
+SUM(CASE WHEN packageWeight>6000 AND packageWeight <=10000 THEN 1 ELSE 0 END )AS fourcnt,
+SUM(CASE WHEN packageWeight>10000 AND packageWeight<= 30000 THEN 1 ELSE 0 END )AS fivecnt,
+SUM(CASE WHEN packageWeight > 30000 THEN 1 ELSE 0 END )AS sixcnt
+from (SELECT goodsPackageUUID,sum(gs.weight) as packageWeight from Goods  gs GROUP BY goodsPackageUUID order by packageWeight DESC) t2
