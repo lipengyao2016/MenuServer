@@ -9,68 +9,62 @@ const utils = require('../common/utils');
 const request = require('common-request').request;
 
 
-describe('goodsType Test Case:',()=>{
-    let goodsTypeTestCase = {
-        name:'其它',
-        description:'回收衣服',
-        typeCode:'05',
-        level: 4,
-
-        carbinRadio: 2.1,
-        waterRadio: 3.0,
-        costRadio: 1.3,
+describe('operator Test Case:',()=>{
+    let operatorTestCase = {
+        name:'添加商户',
+        operatorId:'45ertedfg34',
+        uiOrder:2,
+        menuHref: 'http://localhost:6001/api/v1.0.0/menus/qj5fwQFH3wq3BV7tiJpWSQ',
     };
     let applicationUUID = 'AppUUIDForTestCase';
-    let goodsTypeUUID = null;
+    let operatorUUID = null;
 
     let tenantUUID = null;
     let tenantURL = null;
 
     tenantURL = url ;
 
-    //goodsTypeUUID = 'SAVkeDwGSBpGRTwOWRLDLQ';
+    //operatorUUID = 'SAVkeDwGSBpGRTwOWRLDLQ';
 
     describe('create test case:',  ()=>{
-        it('success create an goodsType',  ()=> {
+        it('success create an operator',  ()=> {
             //this.timeout(0);
 
-
-
-            return request.post(`${tenantURL}/goodsTypes`,goodsTypeTestCase).then( ( {statusCode, body, headers, request} )=>{
+            return request.post(`${tenantURL}/operators`,operatorTestCase).then( ( {statusCode, body, headers, request} )=>{
                 expect(statusCode).to.equal(201);
                 expect(headers['content-type']).to.equal('application/json; charset=utf-8');
-                expect(body.name).to.equal(goodsTypeTestCase.name);
+                expect(body.name).to.equal(operatorTestCase.name);
 
-                goodsTypeUUID = utils.getResourceUUIDInURL(body.href,'goodsTypes');
+                operatorUUID = utils.getResourceUUIDInURL(body.href,'operators');
 
-                console.log('goodsTypes test  create  goodsTypeUUID  :' + goodsTypeUUID + ' body:'+JSON.stringify(body));
+                console.log('operators test  create  operatorUUID  :' + operatorUUID + ' body:'+JSON.stringify(body,null,2));
             });
         });
     });
     describe('retrieve test case:', function () {
-        it('success retrieve an goodsType  ', function () {
+        it('success retrieve an operator  ', function () {
             //this.timeout(0);
 
-            return request.get(`${tenantURL}/goodsTypes/${goodsTypeUUID}`,{}).then( ( { statusCode,body,headers,request} )=>{
+            return request.get(`${tenantURL}/operators/${operatorUUID}`,{}).then( ( { statusCode,body,headers,request} )=>{
 
-                console.log('goodsTypes test retrieve   :' + JSON.stringify(body));
+                console.log('operators test retrieve   :' + JSON.stringify(body,null,2));
 
                 expect(statusCode).to.equal(200);
                 expect(headers['content-type']).to.equal('application/json; charset=utf-8');
                 //expect(uriReg.applicationURIReg.test(res.headers['location'])).to.be.true;
-               // expect(body.name).to.equal(goodsTypeTestCase.name);
+               // expect(body.name).to.equal(operatorTestCase.name);
             });
         });
     });
     describe('update test case:', function () {
-        it('success update an goodsType', function () {
+        it('success update an operator', function () {
             //this.timeout(0);
-           // goodsTypeUUID = '7O1PwyXNuUOEXxvRfvbyrQ';
+           // operatorUUID = '7O1PwyXNuUOEXxvRfvbyrQ';
             let updateInfo = {};
-            updateInfo.description = 'lpy descript';
-            return request.post(`${tenantURL}/goodsTypes/${goodsTypeUUID}`,updateInfo).then( ( { statusCode,body,headers,request} )=>{
+            updateInfo.operatorId = '789wefsdf';
+            return request.post(`${tenantURL}/operators/${operatorUUID}`,updateInfo).then( ( { statusCode,body,headers,request} )=>{
 
-                console.log('goodsTypes test update   :' + JSON.stringify(body));
+                console.log('operators test update   :' + JSON.stringify(body,null,2));
 
                 expect(statusCode).to.equal(200);
                 expect(headers['content-type']).to.equal('application/json; charset=utf-8');
@@ -82,7 +76,7 @@ describe('goodsType Test Case:',()=>{
     describe('list test case:', function () {
 
 
-        it('list goodsTypes  ', function () {
+        it('list operators  ', function () {
             //this.timeout(0);
             let qs = {
                // name:'*good*',
@@ -91,9 +85,9 @@ describe('goodsType Test Case:',()=>{
                                limit:1,
                                createdAt:'[,2018-04-18 18:13:28]'*/
             };
-            return request.get(`${tenantURL}/goodsTypes`,qs).then( ( { statusCode,body,headers,request} )=>{
+            return request.get(`${tenantURL}/operators`,qs).then( ( { statusCode,body,headers,request} )=>{
 
-                console.log('goodsTypes test list   :' + JSON.stringify(body,null,2));
+                console.log('operators test list   :' + JSON.stringify(body,null,2));
 
                 expect(statusCode).to.equal(200);
                 expect(headers['content-type']).to.equal('application/json; charset=utf-8');
@@ -103,10 +97,10 @@ describe('goodsType Test Case:',()=>{
     });
 
     describe('delete test case:',()=>{
-        it('success delete an goodsType', function () {
+        it('success delete an operator', function () {
             //this.timeout(0);
 
-           /* return request.delete(`${tenantURL}/goodsTypes/${goodsTypeUUID}`).then( ( { statusCode,body,headers,request} )=>{
+           /* return request.delete(`${tenantURL}/operators/${operatorUUID}`).then( ( { statusCode,body,headers,request} )=>{
                 expect(statusCode).to.equal(204);
             });*/
         });

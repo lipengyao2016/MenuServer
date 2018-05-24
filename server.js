@@ -14,13 +14,13 @@ const server_name = package.name;
 const ip = config.server.domain;
 const port = process.env.PORT || config.server.port || '3000';
 
-//let UserBusiness = require('./business/userBusiness');
-/*let GoodPackageBusiness = require('./business/goodPackageBusiness');
-let GoodsBusiness = require('./business/goodsBusiness');*/
+let BaseOrganizationBusiness = require('./business/baseOrganizationBusiness');
+let MenuBusiness = require('./business/menuBusiness');
+/*let GoodsBusiness = require('./business/goodsBusiness');*/
 
 extendBusinesses = {
-/*    goodsPackage: new GoodPackageBusiness(),
-    goods:new GoodsBusiness(),*/
+    menuGroup: new BaseOrganizationBusiness(),
+    menu: new MenuBusiness(),
 };
 
 const Koa = require('koa');

@@ -5,6 +5,13 @@ module.exports = {
     // 组织
     "menuOrganization":{
         rest_api: 'batch' ,
+
+        extend_api: [
+            // {name: 'create', method: 'POST', url:'/api/:version/merchants/:merchantUUID/customers'},
+            // {name: 'listPackageTotalStatistics', method: 'GET', url:'/api/:version/goodsPackageTotalStatistics'},
+            //{name: 'listGoodsCostStatistics', method: 'GET', url:'/api/:version/goodsCostStatistics'},
+        ],
+
         params: {
             name:{type:'string'},
             description:{type:'string'},
@@ -38,6 +45,7 @@ module.exports = {
         extend_api: [
            // {name: 'create', method: 'POST', url:'/api/:version/merchants/:merchantUUID/customers'},
            // {name: 'listPackageTotalStatistics', method: 'GET', url:'/api/:version/goodsPackageTotalStatistics'},
+            {name: 'listTreeMenus', method: 'GET', url:'/api/:version/treeMenus'},
         ],
         params: {
             description: {type: 'string'},
