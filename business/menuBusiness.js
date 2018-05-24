@@ -10,6 +10,8 @@ let getSchema = restRouterModel.getSchema;
 const  BaseOrganizationBusiness= require('./baseOrganizationBusiness');
 const serverConfig = require('../config/config');
 
+let parse = restRouterModel.parse;
+
 class MenuBusiness extends BaseOrganizationBusiness
 {
     constructor()
@@ -27,15 +29,18 @@ class MenuBusiness extends BaseOrganizationBusiness
 
         let organization = await  this.checkMenuOrganizationByApplication(data,true);
 
-        data.operators.map(operatorItem =>
+        let operators =data.operators.map(operatorItem =>
         {
             operatorItem.menuUUID = data.uuid;
-            operatorItem.uuid = devUtils.createUUID();
+
+            /*operatorItem.uuid = devUtils.createUUID();
             operatorItem.createdAt = operatorItem.modifiedAt = moment().format('YYYY-MM-DD HH:mm:ss');
-            operatorItem.status = 'enabled';
+            operatorItem.status = 'enabled';*/
+
+            operatorItem = parse(this.resourceConfig,'operator',operatorItem);
+            return operatorItem;
         }
         );
-        let operators = data.operators;
         let menus = data;
         delete menus.operators;
 
@@ -50,15 +55,9 @@ class MenuBusiness extends BaseOrganizationBusiness
                     return operatorTable.insert(operators).transacting(trx);
                 })
                 .then(function (operatorResults) {
-                    console.log('menuBusiness --> create after insert operatorResults :' + JSON.stringify(operatorResults));
-                    return operatorResults;
-                    
-                })
-                .then(function (raws) {
-                    console.log('menuBusiness -->  create success raws :' + JSON.stringify(raws));
+                    console.log('menuBusiness -->  create success operatorResults :' + JSON.stringify(operatorResults));
                     trx.commit();
                     return "success";
-
                 })
                 .catch(function (error) {
                     console.error('menuBusiness -->  create error :' + error);
