@@ -1,10 +1,10 @@
 {
-  "name": "CabinetServer",
+  "name": "MenuServer",
   "version": "1.0.0",
-  "description": "CabinetServer",
+  "description": "MenuServer",
   "repository": {
     "type": "git",
-    "url": "git@gitlab.icarcloud.net:iCarCloud/BCS/BCPlatform/IntelligentCabinet/CabinetServer.git"
+    "url": "git@gitlab.icarcloud.net:iCarCloud/BCS/LaiKooSystem/BasePlatform/MenuServer.git"
   },
   "main": "server.js",
   "keywords": [
