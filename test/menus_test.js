@@ -12,16 +12,27 @@ const request = require('common-request').request;
 describe('menus Test Case:',()=>{
     let menusTestCase =
         {
-        name: '商户设置bb',
+        name: '商户设置gg',
         description: 'sadfsaga',
         type: 0,
         number: '01',
-         menuId: '4578sdfs875sdf',
+         menuId: '4578sdfs875a3',
          uiOrder:2,
          menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/2FyMZ8JQaJsLADNMHMpOgw',
          //menuOrganizationHref: 'http://localhost:6001/api/v1.0.0/menuOrganizations/0vjiGKZ9dvxpoufELryZQw',
 
          applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',
+
+        /* operators:[
+             {
+                 name: '商户编辑1',
+                 operatorId:'wefasdgsagsa1',
+             },
+             {
+                 name: '商户编辑2',
+                 operatorId:'wefasdgsagsa2',
+             },
+         ],*/
     };
 
 
@@ -94,6 +105,7 @@ describe('menus Test Case:',()=>{
                                limit:1,
                                createdAt:'[,2018-04-18 18:13:28]'*/
                 //menusPackageUUID:'xAdNYJaUdyyXyFmd1rFkUg',
+               // orderBy:'uiOrder DESC',
                 applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',
             };
             return request.get(`${url}/menus`,qs).then( ( { statusCode,body,headers,request} )=>{

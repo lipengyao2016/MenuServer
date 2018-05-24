@@ -15,8 +15,68 @@ class MenuBusiness extends BaseOrganizationBusiness
     constructor()
     {
         super();
+    }
+
+
+    async create(data,ctx)
+    {
+        if( !data.operators )
+        {
+            return super.create(data,ctx);
+        }
+
+        let organization = await  this.checkMenuOrganizationByApplication(data,true);
+
+        data.operators.map(operatorItem =>
+        {
+            operatorItem.menuUUID = data.uuid;
+            operatorItem.uuid = devUtils.createUUID();
+            operatorItem.createdAt = operatorItem.modifiedAt = moment().format('YYYY-MM-DD HH:mm:ss');
+            operatorItem.status = 'enabled';
+        }
+        );
+        let operators = data.operators;
+        let menus = data;
+        delete menus.operators;
+
+        let knex = this.dbOperater;
+        let menuTable = knex(this.model.prototype.tableName);
+        let operatorTable = knex(this.models['operator'].prototype.tableName);
+
+        let retData =await  knex.transaction(function (trx) {
+            menuTable.insert(menus).transacting(trx)
+                .then(function (menuResults) {
+                    console.log('menuBusiness --> create menu db succes name:' + JSON.stringify(menus));
+                    return operatorTable.insert(operators).transacting(trx);
+                })
+                .then(function (operatorResults) {
+                    console.log('menuBusiness --> create after insert operatorResults :' + JSON.stringify(operatorResults));
+                    return operatorResults;
+                    
+                })
+                .then(function (raws) {
+                    console.log('menuBusiness -->  create success raws :' + JSON.stringify(raws));
+                    trx.commit();
+                    return "success";
+
+                })
+                .catch(function (error) {
+                    console.error('menuBusiness -->  create error :' + error);
+                    trx.rollback();
+                    throw new Error(error);
+                });
+        })
+        .then(
+                inserts=> {
+                    return "ok";
+                }
+            )
+
+        return menus;
+
 
     }
+
 
 
     async listTreeMenus(data,ctx)
