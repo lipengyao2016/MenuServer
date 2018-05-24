@@ -12,11 +12,11 @@ const request = require('common-request').request;
 describe('menus Test Case:',()=>{
     let menusTestCase =
         {
-        name: '商户设置kk',
+        name: '商户设置ll',
         description: 'sadfsaga',
         type: 0,
         number: '01',
-         menuId: '4578sdfs875b1',
+         menuId: '4578sdfs875b2',
          uiOrder:2,
          menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/2FyMZ8JQaJsLADNMHMpOgw',
          //menuOrganizationHref: 'http://localhost:6001/api/v1.0.0/menuOrganizations/0vjiGKZ9dvxpoufELryZQw',
@@ -26,11 +26,11 @@ describe('menus Test Case:',()=>{
          operators:[
              {
                  name: '商户编辑0',
-                 operatorId:'wefasdgsagsb2',
+                 operatorId:'wefasdgsagsb4',
              },
              {
                  name: '商户编辑1',
-                 operatorId:'wefasdgsagsb3',
+                 operatorId:'wefasdgsagsb5',
              },
          ],
     };

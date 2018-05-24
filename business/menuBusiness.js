@@ -9,6 +9,8 @@ let BaseBusiness = restRouterModel.BaseBusiness;
 let getSchema = restRouterModel.getSchema;
 const  BaseOrganizationBusiness= require('./baseOrganizationBusiness');
 const serverConfig = require('../config/config');
+const  MenuProxy= require('../proxy/menuProxy');
+
 
 let parse = restRouterModel.parse;
 
@@ -17,6 +19,16 @@ class MenuBusiness extends BaseOrganizationBusiness
     constructor()
     {
         super();
+
+    }
+
+    getMenuProxy()
+    {
+        if(!this.menuProxy)
+        {
+            this.menuProxy = new MenuProxy(this.dbOperater,this.model,this.models);
+        }
+        return this.menuProxy;
     }
 
 
@@ -44,36 +56,8 @@ class MenuBusiness extends BaseOrganizationBusiness
         let menus = data;
         delete menus.operators;
 
-        let knex = this.dbOperater;
-        let menuTable = knex(this.model.prototype.tableName);
-        let operatorTable = knex(this.models['operator'].prototype.tableName);
-
-        let retData =await  knex.transaction(function (trx) {
-            menuTable.insert(menus).transacting(trx)
-                .then(function (menuResults) {
-                    console.log('menuBusiness --> create menu db succes name:' + JSON.stringify(menus));
-                    return operatorTable.insert(operators).transacting(trx);
-                })
-                .then(function (operatorResults) {
-                    console.log('menuBusiness -->  create success operatorResults :' + JSON.stringify(operatorResults));
-                    trx.commit();
-                    return "success";
-                })
-                .catch(function (error) {
-                    console.error('menuBusiness -->  create error :' + error);
-                    trx.rollback();
-                    throw new Error(error);
-                });
-        })
-        .then(
-                inserts=> {
-                    return "ok";
-                }
-            )
-
+        let retData = await  this.getMenuProxy().create(menus,operators);
         return menus;
-
-
     }
 
 
