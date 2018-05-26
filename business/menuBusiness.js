@@ -77,6 +77,7 @@ class MenuBusiness extends BaseOrganizationBusiness
         //{items,size}
         let menuGroupObj = await this.models['menuGroup'].listAll({menuOrganizationUUID:qs.menuOrganizationUUID
             ,orderBy:'uiOrder ASC'});
+
         let menuGroupUUIDs = menuGroupObj.items.map(menuGroupItem=>menuGroupItem.uuid);
 
         let menuObj = await this.models['menu'].listAll({menuGroupUUID:menuGroupUUIDs

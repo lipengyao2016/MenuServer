@@ -16,10 +16,10 @@ const port = process.env.PORT || config.server.port || '3000';
 
 let BaseOrganizationBusiness = require('./business/baseOrganizationBusiness');
 let MenuBusiness = require('./business/menuBusiness');
-/*let GoodsBusiness = require('./business/goodsBusiness');*/
+let MenuGroupBusiness = require('./business/menuGroupBusiness');
 
 extendBusinesses = {
-    menuGroup: new BaseOrganizationBusiness(),
+    menuGroup: new MenuGroupBusiness(),
     menu: new MenuBusiness(),
 };
 

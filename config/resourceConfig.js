@@ -1,6 +1,9 @@
 /**
  * Created by Administrator on 2018/1/15.
  */
+
+const config = require('./config');
+
 module.exports = {
     // 组织
     "menuOrganization":{
@@ -16,6 +19,7 @@ module.exports = {
             name:{type:'string'},
             description:{type:'string'},
             status:{type:'string',value:'enabled'},
+            downLevelMenuGroups:{type:'url',isSaveHref:false,isSchema : true,url:`http://${config.server.domain}:${config.server.port}/api/v1/menuOrganizations/`+'${uuid}/downLevelMenuGroups' },
             application: {type: 'url'},
             createdAt: {type:'time'},
             modifiedAt:{type:'time'},
@@ -26,10 +30,18 @@ module.exports = {
     "menuGroup": {
         rest_api: /*'base'*/ 'batch',
         super: 'menuOrganization',
+
+        extend_api: [
+            {name: 'listDownLevelMenuGroups', method: 'GET', url:'/api/:version/menuGroups/:menuGroupUUID/downLevelMenuGroups'},
+            {name: 'listDownLevelMenuGroupByOrganizaions', method: 'GET', url:'/api/:version/menuOrganizations/:menuOrganizationUUID/downLevelMenuGroups'},
+            {name:  'listTreeMenuGroups', method: 'GET', url:'/api/:version/treeMenuGroups'},
+        ],
+
         params: {
             name:{type:'string'},
             description:{type:'string'},
-            upLevelMenuGroupUUID:{type:'string'},
+            upLevelMenuGroup:{type:'url',isSaveHref:false,url:`http://${config.server.domain}:${config.server.port}/api/v1/menuGroups/`+'${upLevelMenuGroupUUID}'},
+            downLevelMenuGroups:{type:'url',isSaveHref:false,isSchema : true,url:`http://${config.server.domain}:${config.server.port}/api/v1/menuGroups/`+'${uuid}/downLevelMenuGroups' },
             uiOrder: {type:'number',value:0},
             status:{type:'string',value:'enabled'},
             createdAt: {type:'time'},

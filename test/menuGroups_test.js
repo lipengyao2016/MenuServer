@@ -11,11 +11,12 @@ const request = require('common-request').request;
 
 describe('menuGroup Test Case:',()=>{
     let menuGroupTestCase = {
-        name: '角色设置cc',
+        name: '操作管理',
         description: 'datagg',
-        uiOrder: 2,
+        uiOrder: 1,
+        upLevelMenuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/6OKmgBfAY4FQRODYO2WNnw',
        // menuOrganizationHref: 'http://localhost:6001/api/v1.0.0/menuOrganizations/0vjiGKZ9dvxpoufELryZQw',
-        applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',
+      //  applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',
     };
     let applicationUUID = 'AppUUIDForTestCase';
     let menuGroupUUID = null;
@@ -95,6 +96,80 @@ describe('menuGroup Test Case:',()=>{
                 //expect(uriReg.applicationURIReg.test(res.headers['location'])).to.be.true;
             });
         });
+
+
+        it('list downLevelMenuGroups by menuOrganization ', function () {
+            //this.timeout(0);
+            let qs = {
+                // name:'*good*',
+                //uuid:['3UCHOeNl5tVmN83fkyQfNQ','V1bg0v8SlXKs8OXApykNzg'],
+                /*               offset:0,
+                               limit:1,
+                               createdAt:'[,2018-04-18 18:13:28]'*/
+               // applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',
+            };
+
+            menuOrganizationUUID = '0vjiGKZ9dvxpoufELryZQw';
+
+            return request.get(`${tenantURL}/menuOrganizations/${menuOrganizationUUID}/downLevelMenuGroups`,qs).then( ( { statusCode,body,headers,request} )=>{
+
+                console.log('menuGroups test downLevelMenuGroups by menuOrganization  :' + JSON.stringify(body,null,2));
+
+                expect(statusCode).to.equal(200);
+                expect(headers['content-type']).to.equal('application/json; charset=utf-8');
+                //expect(uriReg.applicationURIReg.test(res.headers['location'])).to.be.true;
+            });
+        });
+
+
+        it('list downLevelMenuGroups by upMenuGroup ', function () {
+            //this.timeout(0);
+            let qs = {
+                // name:'*good*',
+                //uuid:['3UCHOeNl5tVmN83fkyQfNQ','V1bg0v8SlXKs8OXApykNzg'],
+                /*               offset:0,
+                               limit:1,
+                               createdAt:'[,2018-04-18 18:13:28]'*/
+                // applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',
+            };
+
+            menuGroupUUID = '7EWAlSlisCxNotZ6fM67YQ';
+
+            return request.get(`${tenantURL}/menuGroups/${menuGroupUUID}/downLevelMenuGroups`,qs).then( ( { statusCode,body,headers,request} )=>{
+
+                console.log('menuGroups test downLevelMenuGroups   :' + JSON.stringify(body,null,2));
+
+                expect(statusCode).to.equal(200);
+                expect(headers['content-type']).to.equal('application/json; charset=utf-8');
+                //expect(uriReg.applicationURIReg.test(res.headers['location'])).to.be.true;
+            });
+        });
+
+
+        it('list treeMenuGroups ', function () {
+            //this.timeout(0);
+            let qs = {
+                // name:'*good*',
+                //uuid:['3UCHOeNl5tVmN83fkyQfNQ','V1bg0v8SlXKs8OXApykNzg'],
+                /*               offset:0,
+                               limit:1,
+                               createdAt:'[,2018-04-18 18:13:28]'*/
+                // applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',\
+                menuOrganizationHref : 'http://localhost:6001/api/v1.0.0/menuOrganizations/0vjiGKZ9dvxpoufELryZQw',
+            };
+
+
+
+            return request.get(`${tenantURL}/treeMenuGroups`,qs).then( ( { statusCode,body,headers,request} )=>{
+
+                console.log('menuGroups test downLevelMenuGroups by menuOrganization  :' + JSON.stringify(body,null,2));
+
+                expect(statusCode).to.equal(200);
+                expect(headers['content-type']).to.equal('application/json; charset=utf-8');
+                //expect(uriReg.applicationURIReg.test(res.headers['location'])).to.be.true;
+            });
+        });
+
 
     });
 
