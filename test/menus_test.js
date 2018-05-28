@@ -12,25 +12,25 @@ const request = require('common-request').request;
 describe('menus Test Case:',()=>{
     let menusTestCase =
         {
-        name: '商品库存xx',
+        name: '角色管理',
         description: 'sadfsaga',
         type: 0,
         number: '01',
-         menuId: '4578sdfs875a5',
-         uiOrder:2,
-         menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/nOkRK6dZzpLgKTrfdGBaYQ',
+         menuId: '4578sdfs875c4',
+         uiOrder:3,
+         menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/To5k6vVGDxh7OYBk8VRgOg',
          //menuOrganizationHref: 'http://localhost:6001/api/v1.0.0/menuOrganizations/0vjiGKZ9dvxpoufELryZQw',
 
         // applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',
 
          operators:[
              {
-                 name: '入库xx',
-                 operatorId:'wefasdgsagsa7',
+                 name: '角色列表',
+                 operatorId:'wefasdgsagsc8',
              },
              {
-                 name: '出库xx',
-                 operatorId:'wefasdgsagsa8',
+                 name: '新增角色',
+                 operatorId:'wefasdgsagsc9',
              },
          ],
     };
@@ -122,8 +122,8 @@ describe('menus Test Case:',()=>{
         it('list treeMenus  ', function () {
             //this.timeout(0);
             let qs = {
-             //   applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',
-                menuOrganizationHref : 'http://localhost:6001/api/v1.0.0/menuOrganizations/rIdUW07jGttn5VNGcPvnuQ',
+                applicationHref:'http://localhost:5000/api/v1.0.0/applications/BQZNqVpEbFxyZ7ayW7x2yA',
+             //   menuOrganizationHref : 'http://localhost:6001/api/v1.0.0/menuOrganizations/rIdUW07jGttn5VNGcPvnuQ',
             };
             return request.get(`${url}/treeMenus`,qs).then( ( { statusCode,body,headers,request} )=>{
 

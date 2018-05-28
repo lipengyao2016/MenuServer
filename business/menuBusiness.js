@@ -144,6 +144,8 @@ class MenuBusiness extends BaseOrganizationBusiness
 
         let menuOrganizationObj = await this.models['menuOrganization'].getByKeyId(qs.menuOrganizationUUID);
 
+        menuOrganizationObj = utils.excludeAttrData(menuOrganizationObj,['id','createdAt','modifiedAt']);
+
         if(!menuOrganizationObj)
         {
             return null;
@@ -162,6 +164,8 @@ class MenuBusiness extends BaseOrganizationBusiness
 
         let operatorObj = await this.models['operator'].listAll({menuUUID:menuUUIDs
             ,orderBy:'uiOrder ASC'});
+
+        operatorObj.items = operatorObj.items.map(operatorItem=>utils.excludeAttrData(operatorItem,['id','createdAt','modifiedAt']));
 
         let operatorByMenus = _.groupBy(operatorObj.items,'menuUUID');
 
