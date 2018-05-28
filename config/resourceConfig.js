@@ -34,7 +34,7 @@ module.exports = {
         extend_api: [
             {name: 'listDownLevelMenuGroups', method: 'GET', url:'/api/:version/menuGroups/:menuGroupUUID/downLevelMenuGroups'},
             {name: 'listDownLevelMenuGroupByOrganizaions', method: 'GET', url:'/api/:version/menuOrganizations/:menuOrganizationUUID/downLevelMenuGroups'},
-            {name:  'listTreeMenuGroups', method: 'GET', url:'/api/:version/treeMenuGroups'},
+           // {name:  'listTreeMenuGroups', method: 'GET', url:'/api/:version/treeMenuGroups'},
         ],
 
         params: {

@@ -63,3 +63,14 @@ exports.errorReturn = (error)=>{
         };
     }
 };
+
+exports.excludeAttrData = function (dataInfo, excludeAttribute) {
+    let retDataInfo = {};
+    for (var item in dataInfo) {
+        if(!_.find(excludeAttribute, key=>item==key )){
+            retDataInfo[item] = dataInfo[item];
+        }
+    }
+
+    return retDataInfo;
+};

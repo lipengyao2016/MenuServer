@@ -12,25 +12,25 @@ const request = require('common-request').request;
 describe('menus Test Case:',()=>{
     let menusTestCase =
         {
-        name: '商户设置ll',
+        name: '商品库存xx',
         description: 'sadfsaga',
         type: 0,
         number: '01',
-         menuId: '4578sdfs875b2',
+         menuId: '4578sdfs875a5',
          uiOrder:2,
-         menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/2FyMZ8JQaJsLADNMHMpOgw',
+         menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/nOkRK6dZzpLgKTrfdGBaYQ',
          //menuOrganizationHref: 'http://localhost:6001/api/v1.0.0/menuOrganizations/0vjiGKZ9dvxpoufELryZQw',
 
-         applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',
+        // applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',
 
          operators:[
              {
-                 name: '商户编辑0',
-                 operatorId:'wefasdgsagsb4',
+                 name: '入库xx',
+                 operatorId:'wefasdgsagsa7',
              },
              {
-                 name: '商户编辑1',
-                 operatorId:'wefasdgsagsb5',
+                 name: '出库xx',
+                 operatorId:'wefasdgsagsa8',
              },
          ],
     };
@@ -122,11 +122,12 @@ describe('menus Test Case:',()=>{
         it('list treeMenus  ', function () {
             //this.timeout(0);
             let qs = {
-                applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',
+             //   applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',
+                menuOrganizationHref : 'http://localhost:6001/api/v1.0.0/menuOrganizations/rIdUW07jGttn5VNGcPvnuQ',
             };
             return request.get(`${url}/treeMenus`,qs).then( ( { statusCode,body,headers,request} )=>{
 
-                console.log('menus test treeMenus   :' + JSON.stringify(body,null,2));
+                console.log('menus test treeMenus   :' + JSON.stringify(body));
 
                 expect(statusCode).to.equal(200);
                 expect(headers['content-type']).to.equal('application/json; charset=utf-8');

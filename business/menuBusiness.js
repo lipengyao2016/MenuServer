@@ -10,7 +10,7 @@ let getSchema = restRouterModel.getSchema;
 const  BaseOrganizationBusiness= require('./baseOrganizationBusiness');
 const serverConfig = require('../config/config');
 const  MenuProxy= require('../proxy/menuProxy');
-
+const utils = require('../common/utils');
 
 let parse = restRouterModel.parse;
 
@@ -34,6 +34,13 @@ class MenuBusiness extends BaseOrganizationBusiness
 
     async create(data,ctx)
     {
+
+        if(data.menuGroupUUID)
+        {
+            let menuGroupObj = await this.models['menuGroup'].getByKeyId(data.menuGroupUUID);
+            data.menuOrganizationUUID = menuGroupObj.menuOrganizationUUID;
+        }
+
         if( !data.operators )
         {
             return super.create(data,ctx);
@@ -61,10 +68,73 @@ class MenuBusiness extends BaseOrganizationBusiness
     }
 
 
+    async listTreeMenuGroups(menuOrganizationUUID)
+    {
+        let MenuGroupData = await  this.models['menuGroup'].listAll({menuOrganizationUUID:menuOrganizationUUID
+            ,orderBy:'uiOrder ASC'});
+        let MenuGroups = MenuGroupData.items.map(menuGroupItem=>
+            // _.pick(menuGroupItem,['uuid','name','description','upLevelMenuGroupUUID'])
+            utils.excludeAttrData(menuGroupItem,['id','createdAt','modifiedAt','menuOrganizationUUID'])
+        );
+        let retObj = {
+            menuOrganizationUUID:menuOrganizationUUID,
+            subMenuGroups:[],
+            flatMenuGroups:MenuGroupData.items,
+        };
+
+        let parentMenuGroupMap = {};
+        MenuGroups.map(menuGroupItem=>{
+            if(!parentMenuGroupMap[menuGroupItem.upLevelMenuGroupUUID])
+            {
+                parentMenuGroupMap[menuGroupItem.upLevelMenuGroupUUID] = [menuGroupItem];
+            }
+            else
+            {
+                parentMenuGroupMap[menuGroupItem.upLevelMenuGroupUUID].push(menuGroupItem);
+            }
+        });
+
+        retObj.subMenuGroups = parentMenuGroupMap[null];
+        this.insertSubmenuGroup(retObj,parentMenuGroupMap);
+
+        return retObj;
+
+    }
+
+    insertSubmenuGroup(curMenuGroup,parentMenuGroupMap)
+    {
+        //console.log('insertSubmenuGroup start curMenuGroup:' + JSON.stringify(curMenuGroup));
+
+        curMenuGroup.subMenuGroups.map(submenuGroupItem=>{
+
+            submenuGroupItem.subMenuGroups = parentMenuGroupMap[submenuGroupItem.uuid] ? parentMenuGroupMap[submenuGroupItem.uuid] : [];
+
+            //console.log('insertSubmenuGroup start submenuGroupItem:' + JSON.stringify(submenuGroupItem));
+
+            if(submenuGroupItem.subMenuGroups && submenuGroupItem.subMenuGroups.length > 0)
+            {
+                //console.log('insertSubmenuGroup again insertSubmenuGroup  start submenuGroupItem:' + JSON.stringify(submenuGroupItem));
+                this.insertSubmenuGroup(submenuGroupItem,parentMenuGroupMap);
+                //console.log('insertSubmenuGroup again insertSubmenuGroup  end submenuGroupItem:' + JSON.stringify(submenuGroupItem));
+            }
+
+            //console.log('insertSubmenuGroup end submenuGroupItem:' + JSON.stringify(submenuGroupItem));
+        });
+
+        // console.log('insertSubmenuGroup end curMenuGroup:' + JSON.stringify(curMenuGroup));
+    }
+
+
 
     async listTreeMenus(data,ctx)
     {
         let qs = _.clone(data.query);
+
+        if(qs.menuOrganizationHref)
+        {
+            qs.menuOrganizationUUID = devUtils.getResourceUUIDInURL(qs.menuOrganizationHref,'menuOrganizations');
+        }
+
         let organization = await  this.checkMenuOrganizationByApplication(qs,false);
 
         if(!qs.menuOrganizationUUID)
@@ -74,11 +144,17 @@ class MenuBusiness extends BaseOrganizationBusiness
 
         let menuOrganizationObj = await this.models['menuOrganization'].getByKeyId(qs.menuOrganizationUUID);
 
-        //{items,size}
-        let menuGroupObj = await this.models['menuGroup'].listAll({menuOrganizationUUID:qs.menuOrganizationUUID
-            ,orderBy:'uiOrder ASC'});
+        if(!menuOrganizationObj)
+        {
+            return null;
+        }
 
-        let menuGroupUUIDs = menuGroupObj.items.map(menuGroupItem=>menuGroupItem.uuid);
+        //{items,size}
+        let menuGroupObj = /*await this.models['menuGroup'].listAll({menuOrganizationUUID:qs.menuOrganizationUUID
+            ,orderBy:'uiOrder ASC'})*/
+         await this.listTreeMenuGroups(qs.menuOrganizationUUID);
+
+        let menuGroupUUIDs = menuGroupObj.flatMenuGroups.map(menuGroupItem=>menuGroupItem.uuid);
 
         let menuObj = await this.models['menu'].listAll({menuGroupUUID:menuGroupUUIDs
             ,orderBy:'uiOrder ASC'});
@@ -87,24 +163,39 @@ class MenuBusiness extends BaseOrganizationBusiness
         let operatorObj = await this.models['operator'].listAll({menuUUID:menuUUIDs
             ,orderBy:'uiOrder ASC'});
 
+        let operatorByMenus = _.groupBy(operatorObj.items,'menuUUID');
 
-        menuObj.items.map(menuItem=>{
-            let operatorByMenus = _.groupBy(operatorObj.items,'menuUUID');
-            menuItem.operators = {}
-            menuItem.operators.items =operatorByMenus[menuItem.uuid] ?  operatorByMenus[menuItem.uuid] : [];
-            menuItem.operators.size = menuItem.operators.items.length;
+
+        menuObj.items = menuObj.items.map(menuItem=>{
+            menuItem.operators = {};
+            menuItem.operators =operatorByMenus[menuItem.uuid] ?  operatorByMenus[menuItem.uuid] : [];
+           // menuItem.operators.size = menuItem.operators.items.length;
+
+            return utils.excludeAttrData(menuItem,['id','createdAt','modifiedAt','menuOrganizationUUID'])
         })
 
-        menuGroupObj.items.map(menuGroupItem=>{
-            let menuByGroups = _.groupBy(menuObj.items,'menuGroupUUID');
-            menuGroupItem.menus = {};
-            menuGroupItem.menus.items = menuByGroups[menuGroupItem.uuid] ? menuByGroups[menuGroupItem.uuid] : [];
-            menuGroupItem.menus.size =  menuGroupItem.menus.items.length ;
-        });
+        let menuByGroups = _.groupBy(menuObj.items,'menuGroupUUID');
 
-        menuOrganizationObj.menuGroups = menuGroupObj;
+        let retObj = {
+            menuOrganization:menuOrganizationObj,
+            subMenuGroups:menuGroupObj.subMenuGroups,
+        }
 
-        return menuOrganizationObj;
+        retObj.subMenuGroups.map(subMenuGroupItem=>this.addMenusToMenuGroups(subMenuGroupItem,menuByGroups));
+
+        return retObj;
+    }
+
+    addMenusToMenuGroups(curMenuGroups,menuByGroups)
+    {
+        if(curMenuGroups.subMenuGroups.length <= 0)
+        {
+            curMenuGroups.menus = {};
+            curMenuGroups.menus = menuByGroups[curMenuGroups.uuid] ? menuByGroups[curMenuGroups.uuid] : [];
+           // curMenuGroups.menus.size =  curMenuGroups.menus.items.length ;
+        }
+
+        curMenuGroups.subMenuGroups.map(subMenuGroupItem=>this.addMenusToMenuGroups(subMenuGroupItem,menuByGroups));
 
     }
 

@@ -11,11 +11,11 @@ const request = require('common-request').request;
 
 describe('menuGroup Test Case:',()=>{
     let menuGroupTestCase = {
-        name: '操作管理',
+        name: '商品管理',
         description: 'datagg',
         uiOrder: 1,
-        upLevelMenuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/6OKmgBfAY4FQRODYO2WNnw',
-       // menuOrganizationHref: 'http://localhost:6001/api/v1.0.0/menuOrganizations/0vjiGKZ9dvxpoufELryZQw',
+        upLevelMenuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/eTUA8Knx9e0OMumDevYQ7g',
+      //  menuOrganizationHref: 'http://localhost:6001/api/v1.0.0/menuOrganizations/rIdUW07jGttn5VNGcPvnuQ',
       //  applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',
     };
     let applicationUUID = 'AppUUIDForTestCase';
