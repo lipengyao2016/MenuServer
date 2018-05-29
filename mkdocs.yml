@@ -4,7 +4,6 @@ repo_name: 'GitLab'
 site_author : 'lipy'
 docs_dir : 'apidoc'
 pages:
-  - '主页': 'index.md'
-  - '菜单': 'menuApi.md'
+  - '主页': 'menuApi.md'
 #### theme type: readthedocs bootstrap cerulean cosmo cyborg slate united yeti
 theme: readthedocs
