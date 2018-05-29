@@ -95,8 +95,10 @@ function readEnvParams( obj , prefix = null) {
             readEnvParams( obj[key], param )
         }
         else {
-            if( process.env[param] ){
-                obj[key] = process.env[param];
+            let env = param.toUpperCase();
+            if( process.env[env] ){
+                console.log(`Read ENV ${env}`);
+                obj[key] = process.env[env];
             }
         }
     });
