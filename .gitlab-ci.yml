@@ -1,6 +1,6 @@
 test:
  script:
-  - ServerName=Laikoo_MenuServer
+  - ServerName=/Laikoo/MenuServer
   - /opt/createFile.sh ${ServerName}
   #- npm install
   #- npm install grunt >null
