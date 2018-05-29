@@ -12,13 +12,13 @@ const request = require('common-request').request;
 describe('menus Test Case:',()=>{
     let menusTestCase =
         {
-        name: '角色管理',
+        name: '角色管理qq',
         description: 'sadfsaga',
         type: 0,
         number: '01',
-         menuId: '4578sdfs875c4',
+         menuId: '4578sdfs875d4',
          uiOrder:3,
-         menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/To5k6vVGDxh7OYBk8VRgOg',
+         menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/6cVizWBnkIRlGHCttOmspg',
          //menuOrganizationHref: 'http://localhost:6001/api/v1.0.0/menuOrganizations/0vjiGKZ9dvxpoufELryZQw',
 
         // applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',
@@ -26,11 +26,11 @@ describe('menus Test Case:',()=>{
          operators:[
              {
                  name: '角色列表',
-                 operatorId:'wefasdgsagsc8',
+                 operatorId:'wefasdgsagsd8',
              },
              {
                  name: '新增角色',
-                 operatorId:'wefasdgsagsc9',
+                 operatorId:'wefasdgsagsd9',
              },
          ],
     };

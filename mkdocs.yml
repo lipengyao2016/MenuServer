@@ -1,0 +1,9 @@
+site_name: '菜单管理组件'
+repo_url: 'http://gitlab.icarcloud.net/iCarCloud/BCS/BCSystem/IntelligentCabinet/GoodsBusiServer'
+repo_name: 'GitLab'
+site_author : 'lipy'
+docs_dir : 'apidoc'
+pages:
+  - '菜单': 'menuApi.md'
+#### theme type: readthedocs bootstrap cerulean cosmo cyborg slate united yeti
+theme: readthedocs

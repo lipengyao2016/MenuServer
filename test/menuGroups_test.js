@@ -11,7 +11,7 @@ const request = require('common-request').request;
 
 describe('menuGroup Test Case:',()=>{
     let menuGroupTestCase = {
-        name: '平台管理',
+        name: '平台管理qq',
         description: 'datagg',
         uiOrder: 2,
       //  upLevelMenuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/eTUA8Knx9e0OMumDevYQ7g',
