@@ -11,12 +11,13 @@ const request = require('common-request').request;
 
 describe('menuGroup Test Case:',()=>{
     let menuGroupTestCase = {
-        name: '平台管理qq',
+        name: '平台管理ii',
         description: 'datagg',
         uiOrder: 2,
       //  upLevelMenuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/eTUA8Knx9e0OMumDevYQ7g',
       //  menuOrganizationHref: 'http://localhost:6001/api/v1.0.0/menuOrganizations/PMM7M1sFnSTlDalZXqvPmQ',
         applicationHref:'http://localhost:5000/api/v1.0.0/applications/BQZNqVpEbFxyZ7ayW7x2yA',
+        merchantHref:'http://localhost:5006/api/v1.0.0/applications/bCqavvEkybc3ZZj65Vc05g',
     };
     let applicationUUID = 'AppUUIDForTestCase';
     let menuGroupUUID = null;

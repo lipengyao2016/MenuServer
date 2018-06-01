@@ -60,6 +60,8 @@ class BaseOrganizationBusiness extends BaseBusiness
             }
         }
 
+        console.log('checkMenuOrganizationByApplication organizationUUID:' + organizationUUID);
+
         return organizationUUID;
     }
 
