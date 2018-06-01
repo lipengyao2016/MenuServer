@@ -14,7 +14,7 @@ let config = {
     knex: {
         client: 'mysql',
         connection: {
-            host : '192.168.7.6',
+            host : '192.168.7.26',
             user : 'root',
             password : '123456',
             database : 'MenuServerDB',
@@ -78,7 +78,7 @@ try {
             config.kafka[key] = kafkaConfig[key];
         });
     }
-    console.log('The read common config.');
+    console.log('The read common config. config:' + JSON.stringify(config));
 }
 catch(e) {
     console.warn('The common config does not exist!!!');

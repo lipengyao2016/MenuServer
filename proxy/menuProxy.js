@@ -18,7 +18,7 @@ class MenuProxy
        this.knex = dbOperater;
        this.curModel = curModel;
        this.models = models;
-       this.curTable = this.knex(this.curModel.prototype.tableName);
+      // this.curTable = this.knex(this.curModel.prototype.tableName);
     }
     
 
@@ -26,7 +26,9 @@ class MenuProxy
 
     async create(menus,operators)
     {
-        let menuTable = this.curTable ;
+        /** 2018/6/1  KNEX 的菜单表由全局改为局部，防止事务共享，死锁。
+         lpy-modifyed  */
+        let menuTable = this.knex(this.curModel.prototype.tableName) ;
         let operatorTable = this.knex(this.models['operator'].prototype.tableName);
         
         let retData =await  this.knex.transaction(function (trx) {
