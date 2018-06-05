@@ -6,7 +6,9 @@ let BaseBusiness = restRouterModel.BaseBusiness;
 let getSchema = restRouterModel.getSchema;
 const cacheAble = require('componet-service-framework').cacheAble;
 const redis = require('../common/redis');
+let parse = restRouterModel.parse;
 
+const menuOrganizationHelper = require('./menuOrganizationHelper');
 
 class OrganizationService {
     constructor(organizationModel,dbOperator,dbHostInfo){
@@ -33,8 +35,9 @@ class OrganizationService {
     }
 
 
-    async checkorganization(applicationUUID,applicationHref,bCreated = true)
+    async checkorganization(applicationHref,bCreated = true)
     {
+        let applicationUUID = devUtils.getLastResourceUUIDInURL(applicationHref);
         let organizationUUID = null;
         let organizationObj =await this.getCache(applicationUUID);
         if(organizationObj)
@@ -53,17 +56,7 @@ class OrganizationService {
             {
                 if(bCreated)
                 {
-                    let date = moment().format('YYYY-MM-DD hh:mm:ss');
-                    organizationObj = {
-                        uuid:devUtils.createUUID(),
-                        name:`application-${applicationUUID}`,
-                        description:`href: ${applicationHref || null}`,
-                        applicationUUID:applicationUUID,
-                        applicationHref:applicationHref,
-                        status:'enabled',
-                        createdAt: date,
-                        modifiedAt: date,
-                    };
+                    organizationObj = menuOrganizationHelper.createOrganizations(applicationHref);
                     let organization = await this.organizationModel.create(organizationObj);
                     organizationUUID = organizationObj.uuid;
                     this.setCache(applicationUUID,organizationObj);
@@ -72,6 +65,8 @@ class OrganizationService {
         }
         return organizationUUID;
     }
+
+
 
 
 

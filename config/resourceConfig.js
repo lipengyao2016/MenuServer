@@ -21,6 +21,7 @@ module.exports = {
             status:{type:'string',value:'enabled'},
             downLevelMenuGroups:{type:'url',isSaveHref:false,isSchema : true,url:`http://${config.server.domain}:${config.server.port}/api/v1/menuOrganizations/`+'${uuid}/downLevelMenuGroups' },
             application: {type: 'url'},
+            version:{type:'string',value:'0.0.0'},
             createdAt: {type:'time'},
             modifiedAt:{type:'time'},
         },
@@ -58,6 +59,7 @@ module.exports = {
            // {name: 'create', method: 'POST', url:'/api/:version/merchants/:merchantUUID/customers'},
            // {name: 'listPackageTotalStatistics', method: 'GET', url:'/api/:version/goodsPackageTotalStatistics'},
             {name: 'listTreeMenus', method: 'GET', url:'/api/:version/treeMenus'},
+            {name: 'syncAppMenus', method: 'POST', url:'/api/:version/syncAppMenus'},
         ],
         params: {
             description: {type: 'string'},

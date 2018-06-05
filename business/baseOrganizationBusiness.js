@@ -45,8 +45,8 @@ class BaseOrganizationBusiness extends BaseBusiness
             if(applicationHref)
             {
                 /*ctx.params.applicationUUID ||*/
-                let applicationUUID =  devUtils.getResourceUUIDInURL(applicationHref,'applications');
-                organizationUUID = await this.getorganizationService().checkorganization(applicationUUID,applicationHref,bCreated);
+               // let applicationUUID =  devUtils.getResourceUUIDInURL(applicationHref,'applications');
+                organizationUUID = await this.getorganizationService().checkorganization(applicationHref,bCreated);
                 if(bCreated)
                 {
                     data.menuOrganizationUUID = organizationUUID;

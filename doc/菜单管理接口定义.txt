@@ -39,6 +39,34 @@ menuServer(菜单管理)
   7.用户，账号，角色，做graphql
   
   8.菜单分组，菜单，操作，做graphql
+  
+  
+  9.文件服务器 ，菜单图标的素材库。
+  
+  10.同步系统菜单
+  
+  {
+    applicationName:'',
+    version:'1.0.0',
+    menus:[
+         {
+         name:
+         menuId:
+         operations:
+         [
+          {
+            name:
+            operatorId:
+          }
+         ]
+         }
+       ]
+  }
+  
+  11、支持菜单别名
+  12、权限引用
+  
+  
  
   
   // 初始（莱客平台）
@@ -77,3 +105,31 @@ menuServer(菜单管理)
 // JWT 更换 old token -> new token    系统间的jwt转换 
    
 // 账户退出注销JWT 
+
+
+query{
+      users(options:{offset:0,limit:2,name:"*wensu*"}){
+         uuid
+         name
+        description
+        address
+        account
+        {
+          name
+          merchantNumber
+          mobile
+          number
+          email
+          description
+          status
+        }
+        role
+        {
+         uuid
+         name
+         description
+         status
+          type
+        }
+      }
+}

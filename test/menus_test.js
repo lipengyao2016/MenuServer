@@ -25,11 +25,11 @@ describe('menus Test Case:',()=>{
 
          operators:[
              {
-                 name: '角色列表',
+                 name: '角色列表bb',
                  operatorId:'wefasdgsagsd8',
              },
              {
-                 name: '新增角色',
+                 name: '新增角色cc',
                  operatorId:'wefasdgsagsd9',
              },
          ],
@@ -106,7 +106,8 @@ describe('menus Test Case:',()=>{
                                createdAt:'[,2018-04-18 18:13:28]'*/
                 //menusPackageUUID:'xAdNYJaUdyyXyFmd1rFkUg',
                // orderBy:'uiOrder DESC',
-                applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',
+                applicationHref:'http://192.168.7.26:6000/api/v1.0.0/applications/Sad9YHDXhm9cyMeoNvr2ig',
+                expand:'operators',
             };
             return request.get(`${url}/menus`,qs).then( ( { statusCode,body,headers,request} )=>{
 
@@ -122,7 +123,7 @@ describe('menus Test Case:',()=>{
         it('list treeMenus  ', function () {
             //this.timeout(0);
             let qs = {
-                applicationHref:'http://localhost:5000/api/v1.0.0/applications/BQZNqVpEbFxyZ7ayW7x2yA',
+                applicationHref:'http://192.168.7.26:6000/api/v1.0.0/applications/Sad9YHDXhm9cyMeoNvr2ig',
              //   menuOrganizationHref : 'http://localhost:6001/api/v1.0.0/menuOrganizations/rIdUW07jGttn5VNGcPvnuQ',
             };
             return request.get(`${url}/treeMenus`,qs).then( ( { statusCode,body,headers,request} )=>{
