@@ -23,7 +23,7 @@ describe('menus Test Case:',()=>{
 
          applicationHref:'http://192.168.7.26:6000/api/v1.0.0/applications/Sad9YHDXhm9cyMeoNvr2ig',
 
-         operators:[
+       /*  operators:[
              {
                  name: '角色列表bb',
                  operatorId:'wefasdgsagsd8',
@@ -32,7 +32,7 @@ describe('menus Test Case:',()=>{
                  name: '新增角色cc',
                  operatorId:'wefasdgsagsd9',
              },
-         ],
+         ],*/
     };
 
 
@@ -92,6 +92,23 @@ describe('menus Test Case:',()=>{
                 //expect(uriReg.applicationURIReg.test(res.headers['location'])).to.be.true;
             });
         });
+
+
+        it('success batchUpdate an menus',  ()=> {
+            //this.timeout(0);
+
+            let updateMenus = {
+                uuid:['mzNYalrUcBWrGsbxEsQcAQ','8KMwPfurIZoEHfENAShS6g'],
+                description:'ccc',
+                menuGroupUUID:'Y9ItzadYabvitqDcPHZpUQ',
+            };
+            return request.post(`${url}/menus/batchUpdate`,updateMenus).then( ( {statusCode, body, headers, request} )=>{
+                expect(statusCode).to.equal(200);
+
+                console.log('menus test  batchUpdate  body:'+JSON.stringify(body,null,2));
+            });
+        });
+
     });
     describe('list test case:', function () {
 

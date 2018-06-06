@@ -450,8 +450,77 @@ post
 
 
 
+###5.批量更新菜单信息
 
-###5.删除菜单。
+http://localhost:6001/api/v1/menus/batchUpdate
+
+**http**
+
+post
+
+**request**
+
+```
+{
+                uuid:['mzNYalrUcBWrGsbxEsQcAQ','8KMwPfurIZoEHfENAShS6g'],
+                description:'ccc',
+                menuGroupUUID:'Y9ItzadYabvitqDcPHZpUQ',
+            }
+```
+
+**response**
+
+```
+[
+  {
+    "href": "http://localhost:6001/api/v1.0.0/menus/mzNYalrUcBWrGsbxEsQcAQ",
+    "description": "ccc",
+    "name": null,
+    "type": 0,
+    "number": null,
+    "menuId": null,
+    "iconHref": null,
+    "uiOrder": 0,
+    "status": "enabled",
+    "createdAt": null,
+    "modifiedAt": "2018-06-06 11:03:01",
+    "menuOrganization": {
+      "href": "http://localhost:6001/api/v1.0.0/menuOrganizations/undefined"
+    },
+    "menuGroup": {
+      "href": "http://localhost:6001/api/v1.0.0/menuGroups/Y9ItzadYabvitqDcPHZpUQ"
+    },
+    "operators": {
+      "href": "http://localhost:6001/api/v1.0.0/menus/mzNYalrUcBWrGsbxEsQcAQ/operators"
+    }
+  },
+  {
+    "href": "http://localhost:6001/api/v1.0.0/menus/8KMwPfurIZoEHfENAShS6g",
+    "description": "ccc",
+    "name": null,
+    "type": 0,
+    "number": null,
+    "menuId": null,
+    "iconHref": null,
+    "uiOrder": 0,
+    "status": "enabled",
+    "createdAt": null,
+    "modifiedAt": "2018-06-06 11:03:01",
+    "menuOrganization": {
+      "href": "http://localhost:6001/api/v1.0.0/menuOrganizations/undefined"
+    },
+    "menuGroup": {
+      "href": "http://localhost:6001/api/v1.0.0/menuGroups/Y9ItzadYabvitqDcPHZpUQ"
+    },
+    "operators": {
+      "href": "http://localhost:6001/api/v1.0.0/menus/8KMwPfurIZoEHfENAShS6g/operators"
+    }
+  }
+]
+```
+
+
+###6.删除菜单。
 
 http://localhost:6001/api/v1/menus/:menuUUID
 
