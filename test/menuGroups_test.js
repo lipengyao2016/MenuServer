@@ -11,13 +11,13 @@ const request = require('common-request').request;
 
 describe('menuGroup Test Case:',()=>{
     let menuGroupTestCase = {
-        name: '平台管理ii',
+        name: '商户管理员运营xxx',
         description: 'datagg',
-        uiOrder: 2,
-      //  upLevelMenuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/eTUA8Knx9e0OMumDevYQ7g',
+        uiOrder: 3,
+      //  upLevelMenuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/ESQmj0c7OkWXYclyPxhU7w',
       //  menuOrganizationHref: 'http://localhost:6001/api/v1.0.0/menuOrganizations/PMM7M1sFnSTlDalZXqvPmQ',
-        applicationHref:'http://localhost:5000/api/v1.0.0/applications/BQZNqVpEbFxyZ7ayW7x2yA',
-        merchantHref:'http://localhost:5006/api/v1.0.0/applications/bCqavvEkybc3ZZj65Vc05g',
+        ownerHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',
+      //  merchantHref:'http://localhost:5006/api/v1.0.0/applications/bCqavvEkybc3ZZj65Vc05g',
     };
     let applicationUUID = 'AppUUIDForTestCase';
     let menuGroupUUID = null;
@@ -27,7 +27,7 @@ describe('menuGroup Test Case:',()=>{
 
     tenantURL = url /*+ '/directories' + '/zbDG5Ul3MHzHOEBFYyIalQ' */;
 
-    //menuGroupUUID = 'SAVkeDwGSBpGRTwOWRLDLQ';
+    menuGroupUUID = '8pyNRzO52CiVjCP3Nfbvvw';
 
     describe('create test case:',  ()=>{
         it('success create an menuGroup',  ()=> {
@@ -86,7 +86,7 @@ describe('menuGroup Test Case:',()=>{
                 /*               offset:0,
                                limit:1,
                                createdAt:'[,2018-04-18 18:13:28]'*/
-                applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',
+                ownerHref:'http://localhost:5000/api/v1.0.0/applications/BQZNqVpEbFxyZ7ayW7x2yA',
             };
             return request.get(`${tenantURL}/menuGroups`,qs).then( ( { statusCode,body,headers,request} )=>{
 
@@ -110,7 +110,7 @@ describe('menuGroup Test Case:',()=>{
                // applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',
             };
 
-            menuOrganizationUUID = '0vjiGKZ9dvxpoufELryZQw';
+            menuOrganizationUUID = 'ycfqUhnlAEhxxfRqu5Vyqg';
 
             return request.get(`${tenantURL}/menuOrganizations/${menuOrganizationUUID}/downLevelMenuGroups`,qs).then( ( { statusCode,body,headers,request} )=>{
 
@@ -134,7 +134,7 @@ describe('menuGroup Test Case:',()=>{
                 // applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',
             };
 
-            menuGroupUUID = '7EWAlSlisCxNotZ6fM67YQ';
+            menuGroupUUID = 'U2v87SKg3dSjT06k3i5d7w';
 
             return request.get(`${tenantURL}/menuGroups/${menuGroupUUID}/downLevelMenuGroups`,qs).then( ( { statusCode,body,headers,request} )=>{
 
@@ -147,14 +147,14 @@ describe('menuGroup Test Case:',()=>{
         });
 
 
-        it('list treeMenuGroups ', function () {
+ /*       it('list treeMenuGroups ', function () {
             //this.timeout(0);
             let qs = {
                 // name:'*good*',
                 //uuid:['3UCHOeNl5tVmN83fkyQfNQ','V1bg0v8SlXKs8OXApykNzg'],
-                /*               offset:0,
+                /!*               offset:0,
                                limit:1,
-                               createdAt:'[,2018-04-18 18:13:28]'*/
+                               createdAt:'[,2018-04-18 18:13:28]'*!/
                 // applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',\
                 menuOrganizationHref : 'http://localhost:6001/api/v1.0.0/menuOrganizations/0vjiGKZ9dvxpoufELryZQw',
             };
@@ -169,7 +169,7 @@ describe('menuGroup Test Case:',()=>{
                 expect(headers['content-type']).to.equal('application/json; charset=utf-8');
                 //expect(uriReg.applicationURIReg.test(res.headers['location'])).to.be.true;
             });
-        });
+        });*/
 
 
     });

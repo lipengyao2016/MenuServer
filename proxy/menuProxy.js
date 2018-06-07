@@ -37,8 +37,15 @@ class MenuProxy
         let retData =await  knex.transaction(function (trx) {
             knex(menuName).insert(menus).transacting(trx)
                 .then(function (menuResults) {
-                    console.log('MenuProxy --> create menu db succes name:' + JSON.stringify(menus));
-                    return knex(operatorName).insert(operators).transacting(trx);
+                    console.log('MenuProxy --> create menu db succes name:' + JSON.stringify(menuResults));
+                    if(operators.length > 0)
+                    {
+                        return knex(operatorName).insert(operators).transacting(trx);
+                    }
+                    else
+                    {
+                        return 'no operators';
+                    }
                 })
                 .then(function (operatorResults) {
                     console.log('MenuProxy -->  create success operatorResults :' + JSON.stringify(operatorResults));

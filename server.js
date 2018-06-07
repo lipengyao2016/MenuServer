@@ -17,10 +17,17 @@ const port = process.env.PORT || config.server.port || '3000';
 let BaseOrganizationBusiness = require('./business/baseOrganizationBusiness');
 let MenuBusiness = require('./business/menuBusiness');
 let MenuGroupBusiness = require('./business/menuGroupBusiness');
+let MenuOrganizationBusiness = require('./business/menuOrganizationBusiness');
+let OperatorBusiness = require('./business/operatorBusiness');
+let MetaMenuBusiness = require('./business/metaMenuBusiness');
 
 extendBusinesses = {
+    menuOrganization: new MenuOrganizationBusiness(),
     menuGroup: new MenuGroupBusiness(),
     menu: new MenuBusiness(),
+    operator:new OperatorBusiness(),
+    metaMenu:new MetaMenuBusiness(),
+
 };
 
 const Koa = require('koa');

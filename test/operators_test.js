@@ -11,11 +11,25 @@ const request = require('common-request').request;
 
 describe('operator Test Case:',()=>{
     let operatorTestCase = {
-        name:'添加商户',
-        operatorId:'45ertedfg34',
-        uiOrder:2,
-        menuHref: 'http://localhost:6001/api/v1.0.0/menus/qj5fwQFH3wq3BV7tiJpWSQ',
+       // name:'添加商户',
+      //  operatorId:'45ertedfg34',
+       // uiOrder:2,
+        menuHref: 'http://localhost:6001/api/v1.0.0/menus/PWLhNmRHYuAaGeKrWuasrQ',
+        metaOperatorUUID:'LrmWXTvdcnSQhCopNVM4NQ',
     };
+
+
+    let batchOperatorTestCase = [
+        {
+        menuHref: 'http://localhost:6001/api/v1.0.0/menus/PWLhNmRHYuAaGeKrWuasrQ',
+        metaOperatorUUID:'LrmWXTvdcnSQhCopNVM4NQ',
+    },
+        {
+            menuHref: 'http://localhost:6001/api/v1.0.0/menus/PWLhNmRHYuAaGeKrWuasrQ',
+            metaOperatorUUID:'DYPyoTn0m4I1TG4JMeOoeQ',
+        },
+    ];
+
     let applicationUUID = 'AppUUIDForTestCase';
     let operatorUUID = null;
 
@@ -24,7 +38,7 @@ describe('operator Test Case:',()=>{
 
     tenantURL = url ;
 
-    //operatorUUID = 'SAVkeDwGSBpGRTwOWRLDLQ';
+    operatorUUID = 'H50Eki2dcEAcVrpXuifRaA';
 
     describe('create test case:',  ()=>{
         it('success create an operator',  ()=> {
@@ -33,13 +47,26 @@ describe('operator Test Case:',()=>{
             return request.post(`${tenantURL}/operators`,operatorTestCase).then( ( {statusCode, body, headers, request} )=>{
                 expect(statusCode).to.equal(201);
                 expect(headers['content-type']).to.equal('application/json; charset=utf-8');
-                expect(body.name).to.equal(operatorTestCase.name);
 
                 operatorUUID = utils.getResourceUUIDInURL(body.href,'operators');
 
-                console.log('operators test  create  operatorUUID  :' + operatorUUID + ' body:'+JSON.stringify(body,null,2));
+                console.log('operators test  create   body:'+JSON.stringify(body,null,2));
             });
         });
+
+
+        it('success batchCreate an operator',  ()=> {
+            //this.timeout(0);
+
+            return request.post(`${tenantURL}/operators/batchCreate`,batchOperatorTestCase).then( ( {statusCode, body, headers, request} )=>{
+                expect(statusCode).to.equal(201);
+                expect(headers['content-type']).to.equal('application/json; charset=utf-8');
+
+
+                console.log('operators test  batchCreate   body:'+JSON.stringify(body,null,2));
+            });
+        });
+
     });
     describe('retrieve test case:', function () {
         it('success retrieve an operator  ', function () {

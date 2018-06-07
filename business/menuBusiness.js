@@ -20,7 +20,6 @@ class MenuBusiness extends BaseOrganizationBusiness
     constructor()
     {
         super();
-
     }
 
     getMenuProxy()
@@ -32,37 +31,88 @@ class MenuBusiness extends BaseOrganizationBusiness
         return this.menuProxy;
     }
 
-
-    async create(data,ctx)
+    async preProcessMenuData(data)
     {
-
         if(data.menuGroupUUID)
         {
             let menuGroupObj = await this.models['menuGroup'].getByKeyId(data.menuGroupUUID);
             data.menuOrganizationUUID = menuGroupObj.menuOrganizationUUID;
         }
 
-        if( !data.operators )
+        if(data.metaMenuUUID)
         {
-            return super.create(data,ctx);
+            let menuMetaObj = await this.models['metaMenu'].getByKeyId(data.metaMenuUUID);
+            if(!data.menuId)
+            {
+                data.menuId = menuMetaObj.menuId;
+            }
+            if(!data.name)
+            {
+                data.name = menuMetaObj.name;
+            }
+
+            if(!data.operators)
+            {
+                data.operators = [];
+            }
+            if(data.bCreatedOperators)
+            {
+                let metaOperatorData = await  this.models['metaOperator'].listAll({metaMenuUUID:data.metaMenuUUID});
+
+                metaOperatorData.items.map(metaOperatorItem=>{
+                    data.operators.push({
+                        name:metaOperatorItem.name,
+                        operatorId:metaOperatorItem.operatorId,
+                    });
+                })
+            }
+
+            delete data.metaMenuUUID;
+            delete  data.bCreatedOperators;
+
+            data.operators = data.operators.map(operatorItem =>
+            {
+                operatorItem.menuUUID = data.uuid;
+                operatorItem = parse(this.resourceConfig,'operator',operatorItem);
+                return operatorItem;
+            } );
         }
 
-        let organization = await  this.checkMenuOrganizationByApplication(data,true);
+        let organization = await  this.checkMenuOrganizationByOwner(data,true);
 
-        let operators =data.operators.map(operatorItem =>
+        return data;
+    }
+
+
+    async create(data,ctx)
+    {
+        data = await  this.preProcessMenuData(data);
+
+        let operators = data.operators;
+        let menu = data;
+        delete menu.operators;
+
+        let menus = [];
+        menus.push(menu);
+
+        let retData = await  this.getMenuProxy().create(menus,operators);
+        return menu;
+    }
+
+
+    async batchCreate(data,ctx)
+    {
+        let menus = [],operators = [];
+        for(let i = 0;i < data.length;i++)
         {
-            operatorItem.menuUUID = data.uuid;
+            let curData = await  this.preProcessMenuData(data[i]);
 
-            /*operatorItem.uuid = devUtils.createUUID();
-            operatorItem.createdAt = operatorItem.modifiedAt = moment().format('YYYY-MM-DD HH:mm:ss');
-            operatorItem.status = 'enabled';*/
-
-            operatorItem = parse(this.resourceConfig,'operator',operatorItem);
-            return operatorItem;
+            let tempOperators = curData.operators;
+            let tempMenu = curData;
+            delete curData.operators;
+            menus.push(tempMenu);
+            operators = operators.concat(tempOperators);
         }
-        );
-        let menus = data;
-        delete menus.operators;
 
         let retData = await  this.getMenuProxy().create(menus,operators);
         return menus;
@@ -136,7 +186,7 @@ class MenuBusiness extends BaseOrganizationBusiness
             qs.menuOrganizationUUID = devUtils.getResourceUUIDInURL(qs.menuOrganizationHref,'menuOrganizations');
         }
 
-        let organization = await  this.checkMenuOrganizationByApplication(qs,false);
+        let organization = await  this.checkMenuOrganizationByOwner(qs,false);
 
         if(!qs.menuOrganizationUUID)
         {

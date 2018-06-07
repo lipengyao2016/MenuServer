@@ -20,7 +20,8 @@ module.exports = {
             description:{type:'string'},
             status:{type:'string',value:'enabled'},
             downLevelMenuGroups:{type:'url',isSaveHref:false,isSchema : true,url:`http://${config.server.domain}:${config.server.port}/api/v1/menuOrganizations/`+'${uuid}/downLevelMenuGroups' },
-            application: {type: 'url'},
+            owner: {type: 'url'},
+            ownerType: {type: 'string'},
             version:{type:'string',value:'0.0.0'},
             createdAt: {type:'time'},
             modifiedAt:{type:'time'},
@@ -98,6 +99,47 @@ module.exports = {
             modifiedAt:{type:'time'},
         },
     },
+
+
+
+    // 元菜单
+    "metaMenu":{
+        rest_api: 'batch',
+        super: 'menuOrganization',
+
+        extend_api: [
+         /*   {name: 'listTreeMenus', method: 'GET', url:'/api/:version/treeMenus'},
+            {name: 'syncAppMenus', method: 'POST', url:'/api/:version/syncAppMenus'},*/
+        ],
+        params: {
+
+            name: {type: 'string'},
+            menuId: {type: 'string'},
+            status:{type:'string',value:'enabled'},
+            createdAt: {type:'time'},
+            modifiedAt:{type:'time'},
+        },
+    },
+
+
+    // 元操作
+    "metaOperator":{
+        rest_api: 'batch',
+        super: 'metaMenu',
+
+        extend_api: [
+
+        ],
+        params: {
+
+            name: {type: 'string'},
+            operatorId: {type: 'string'},
+            status:{type:'string',value:'enabled'},
+            createdAt: {type:'time'},
+            modifiedAt:{type:'time'},
+        },
+    },
+
 
 
 };

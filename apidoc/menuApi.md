@@ -330,8 +330,10 @@ get
 
 ###3.新增一个菜单，可同时创建操作
 
-
 http://localhost:6001/api/v1/menus
+
+批量创建，入参传数组即可，格式一样。
+http://localhost:6001/api/v1/menus/batchCreate
 
 **http**
 
@@ -339,6 +341,7 @@ post
 
 **request**
 
+第一种方式:
 ```
  {
         name: '角色管理qq',
@@ -362,6 +365,16 @@ post
              },
          ],
     }
+```
+
+
+第二种方式:
+```
+  {
+             menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/JZv0qnDunAAcE1U5QGqW7Q',
+             metaMenuUUID:'TOSkzGil5QL1c7JyA9UT9g',  //元菜单UUID.
+             bCreatedOperators:true,                 //是否同时创建元菜单下的所有操作。
+  },
 ```
 
 **response**
@@ -532,3 +545,51 @@ delete
 
 statusCode=204
 
+###4.创建操作
+
+http://localhost:6001/api/v1/operators
+
+批量创建，入参传数组即可，格式一样。
+http://localhost:6001/api/v1/operators/batchCreate
+
+**http**
+
+post
+
+**request**
+
+第一种方式:
+```
+ {
+       name:'添加商户',
+       operatorId:'45ertedfg34',
+       uiOrder:2,
+        menuHref: 'http://localhost:6001/api/v1.0.0/menus/PWLhNmRHYuAaGeKrWuasrQ', //所属的菜单链接。
+    }
+```
+
+
+第二种方式:
+```
+  {
+         menuHref: 'http://localhost:6001/api/v1.0.0/menus/PWLhNmRHYuAaGeKrWuasrQ',
+         metaOperatorUUID:'LrmWXTvdcnSQhCopNVM4NQ',   //元操作UUID.
+  },
+```
+
+**response**
+
+```
+{
+  "href": "http://localhost:6001/api/v1.0.0/operators/H50Eki2dcEAcVrpXuifRaA",
+  "name": "添加菜单",
+  "operatorId": "45ertedfg04",
+  "uiOrder": 0,
+  "status": "enabled",
+  "createdAt": "2018-06-07 17:38:02",
+  "modifiedAt": "2018-06-07 17:38:02",
+  "menu": {
+    "href": "http://localhost:6001/api/v1.0.0/menus/Arm6qwTn9UIpzkj70gnRrA"
+  }
+}
+```

@@ -11,9 +11,7 @@ const request = require('common-request').request;
 
 describe('menuOrganizations Test Case:',()=>{
     let menuOrganizationsTestCase = {
-        name:'BQZNqVpEbFxyZ7ayW7x2yA',
-        description:'345dfsf',
-        applicationHref:'http://localhost:5000/api/v1.0.0/applications/BQZNqVpEbFxyZ7ayW7x2yA',
+        ownerHref:'http://localhost:5000/api/v1.0.0/applications/EQZNqVpEbFxyZ7ayW7x2yA',
     };
     let applicationUUID = 'AppUUIDForTestCase';
     let menuOrganizationsUUID = null;
@@ -32,7 +30,6 @@ describe('menuOrganizations Test Case:',()=>{
             return request.post(`${tenantURL}/menuOrganizations`,menuOrganizationsTestCase).then( ( {statusCode, body, headers, request} )=>{
                 expect(statusCode).to.equal(201);
                 expect(headers['content-type']).to.equal('application/json; charset=utf-8');
-                expect(body.name).to.equal(menuOrganizationsTestCase.name);
 
                 menuOrganizationsUUID = utils.getResourceUUIDInURL(body.href,'menuOrganizations');
 
@@ -104,11 +101,12 @@ describe('menuOrganizations Test Case:',()=>{
                 'RQZNqVpEbFxyZ7ayW7x2yA',
                 'PQZNqVpEbFxyZ7ayW7x2yA'];
             let qs = {
-                name:'*good*',
+               // name:'*good*',
                 //uuid:['3UCHOeNl5tVmN83fkyQfNQ','V1bg0v8SlXKs8OXApykNzg'],
                 /*               offset:0,
                                limit:1,
                                createdAt:'[,2018-04-18 18:13:28]'*/
+                ownerHref:'http://localhost:5000/api/v1.0.0/applications/AQZNqVpEbFxyZ7ayW7x2yA',
             };
             return request.get(`${tenantURL}/menuOrganizations`,qs).then( ( { statusCode,body,headers,request} )=>{
 

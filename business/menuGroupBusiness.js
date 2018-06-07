@@ -22,7 +22,6 @@ class MenuGroupBusiness extends BaseOrganizationBusiness
     }
 
 
-
     async create(data,ctx)
     {
         if( ! data.upLevelMenuGroupUUID )

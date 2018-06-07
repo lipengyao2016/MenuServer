@@ -17,3 +17,13 @@ let options = {
 exports.url = `http://${options.host}:${options.port}/api/v1`;
 
 
+const devUtils = require('develop-utils');
+let applicationHref = 'http://localhost:5000/api/v1.0.0/applications/BQZNqVpEbFxyZ7ayW7x2yA';
+
+/*let data = devUtils.getLastResourceUUIDInURL(applicationHref);
+console.log(data);*/
+
+
+let reg = /\/[\w]+\/.*$/;
+let result = reg.exec(applicationHref);
+console.log(result[0]);
