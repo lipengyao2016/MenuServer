@@ -23,7 +23,12 @@ Menugroup资源是指用来包含子菜单的菜单目录，主要作分类导�
 
 http://localhost:6001/api/v1.0.0/menuGroups
 
+
+拥有者链接表明这个菜单组织属于哪个系统，或者哪个业态。
+应用链接表明这个菜单组织中的菜单来源于哪个系统。
+
 当不传应用系统链接时，默认从JWT中获取。
+当不传拥有者链接时，则ownerHref=applicationHref.
    
 **http**
 
@@ -31,7 +36,8 @@ get
 
 ```
 {
-      ownerHref:"http://192.168.7.210:5000/api/v1.0.0/applications/gwUpBQ3HpXxItT7OcChoCA",
+      ownerHref:"http://192.168.7.210:5000/api/v1.0.0/businessFormat/gwUpBQ3HpXxItT7OcChoCA",
+      applicationHref:'http://localhost:5000/api/v1.0.0/applications/RQZNqVpEbFxyZ7ayW7x2yA',
       upLevelMenuGroupUUID:null,   //上级分组的UUID,为空即为取所有的顶级分组。
       expand:'downLevelMenuGroups',
 } 
@@ -83,6 +89,7 @@ get
 http://localhost:6001/api/v1.0.0/menuGroups  
 
 当不传应用系统链接时，默认从JWT中获取。
+当不传拥有者链接时，则ownerHref=applicationHref.
 
 **http**
 
@@ -99,6 +106,7 @@ post
         uiOrder: 2,
         upLevelMenuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/eTUA8Knx9e0OMumDevYQ7g',
         ownerHref:'http://192.168.7.210:5000/api/v1.0.0/applications/gwUpBQ3HpXxItT7OcChoCA',, //当上级分组链接为空时，必须传此字段。
+        applicationHref:'http://localhost:5000/api/v1.0.0/applications/RQZNqVpEbFxyZ7ayW7x2yA',
  };
  
  
@@ -211,6 +219,7 @@ Menu资源是指用户主页左侧的导航菜单，用来跳转到具体功能�
 
 
 当不传应用系统链接时，默认从JWT中获取。
+当不传拥有者链接时，则ownerHref=applicationHref.
 
 http://localhost:6001/api/v1/treeMenus
 
@@ -222,7 +231,8 @@ get
 
 ```
 {
-   ownerHref:'http://localhost:5000/api/v1.0.0/applications/BQZNqVpEbFxyZ7ayW7x2yA',
+   ownerHref:"http://192.168.7.210:5000/api/v1.0.0/businessFormat/gwUpBQ3HpXxItT7OcChoCA",
+   applicationHref:'http://localhost:5000/api/v1.0.0/applications/RQZNqVpEbFxyZ7ayW7x2yA',
 }
 ```
 
@@ -291,6 +301,7 @@ get
 {
     "name" : "角色管理"   //菜单名称。
     ownerHref:"http://192.168.7.210:5000/api/v1.0.0/applications/gwUpBQ3HpXxItT7OcChoCA", //要获取的某个系统下的菜单列表。
+    applicationHref:'http://localhost:5000/api/v1.0.0/applications/RQZNqVpEbFxyZ7ayW7x2yA',
 }
 ```
 
@@ -359,6 +370,7 @@ post
          menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/6cVizWBnkIRlGHCttOmspg',
 
         // ownerHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',//当没有选菜单分组时，此系统链接必须填。
+          applicationHref:'http://localhost:5000/api/v1.0.0/applications/RQZNqVpEbFxyZ7ayW7x2yA',
 
          operators:[
              {
@@ -621,7 +633,7 @@ get
 
 ```
 {
-    ownerHref:"http://192.168.7.210:5000/api/v1.0.0/applications/gwUpBQ3HpXxItT7OcChoCA", //要获取的某个系统下的菜单列表。
+    applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA', //要获取的某个系统下的菜单列表。
 }
 ```
 
