@@ -11,7 +11,6 @@ const  BaseOrganizationBusiness= require('./baseOrganizationBusiness');
 const serverConfig = require('../config/config');
 const  MenuProxy= require('../proxy/menuProxy');
 const utils = require('../common/utils');
-const menuOrganizationHelper = require('./menuOrganizationHelper');
 
 let parse = restRouterModel.parse;
 

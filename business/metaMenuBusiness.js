@@ -9,10 +9,8 @@ let BaseBusiness = restRouterModel.BaseBusiness;
 let getSchema = restRouterModel.getSchema;
 const  BaseOrganizationBusiness= require('./baseOrganizationBusiness');
 const serverConfig = require('../config/config');
-const  MenuProxy= require('../proxy/menuProxy');
+const  MetaMenuProxy= require('../proxy/metaMenuProxy');
 const utils = require('../common/utils');
-const menuOrganizationHelper = require('./menuOrganizationHelper');
-
 let parse = restRouterModel.parse;
 
 class MetaMenuBusiness extends BaseOrganizationBusiness
@@ -22,6 +20,14 @@ class MetaMenuBusiness extends BaseOrganizationBusiness
         super();
     }
 
+    getProxy()
+    {
+        if(!this.proxy)
+        {
+            this.proxy = new MetaMenuProxy(this.dbOperater,this.model,this.models);
+        }
+        return this.proxy;
+    }
 
     async syncAppMenus(data,ctx)
     {
@@ -33,34 +39,56 @@ class MetaMenuBusiness extends BaseOrganizationBusiness
             delMenus,
             delOperators} = data.body;
         let addMenuOrganizations = {},modifiedMenuOrganizations = {};
-        if(menuOrganizationUpData.bCreated)
+        let bMenuOrganizationCreated = menuOrganizationUpData.bCreated;
+        delete menuOrganizationUpData.bCreated;
+
+        if(bMenuOrganizationCreated)
         {
-           menuOrganizationUpData = menuOrganizationHelper.createOrganizations(menuOrganizationUpData.uuid,
-               menuOrganizationUpData.applicationHref,menuOrganizationUpData.version);
-            addMenuOrganizations = menuOrganizationUpData;
+           menuOrganizationUpData = parse(this.resourceConfig,'menuOrganization',menuOrganizationUpData);
+           menuOrganizationUpData = this.businesses['menuOrganization'].preOrganizationData(menuOrganizationUpData);
+           addMenuOrganizations = menuOrganizationUpData;
         }
         else
         {
-            delete menuOrganizationUpData.bCreated;
             modifiedMenuOrganizations = menuOrganizationUpData;
             modifiedMenuOrganizations.modifiedAt = moment().format('YYYY-MM-DD HH:mm:ss');
         }
 
-        let  addMenuRets = addMenus.map(menuItem=> parse(this.resourceConfig,'menu',menuItem));
+        let addMenuIds = [],addOperatosIds=[];
+
+        let  addMenuRets = addMenus.map(menuItem=> {
+            addMenuIds.push(menuItem.menuId);
+            return parse(this.resourceConfig,'metaMenu',menuItem)});
         let modifiedMenuRets = modifiedMenus.map(menuItem=> {
             menuItem.modifiedAt = moment().format('YYYY-MM-DD HH:mm:ss');
             return menuItem;
         });
 
-        let addOperatorRets = addOperators.map(operatorItem=> parse(this.resourceConfig,'operator',operatorItem));
+        let addOperatorRets = addOperators.map(operatorItem=> {
+            addOperatosIds.push(operatorItem.operatorId);
+           return parse(this.resourceConfig,'metaOperator',operatorItem)});
+
         let modifiedOperatorRets = modifiedOperators.map(operatorItem=> {
             operatorItem.modifiedAt = moment().format('YYYY-MM-DD HH:mm:ss');
             return operatorItem;
         });
 
 
-        let retData = await  this.getMenuProxy().syncAppMenus(addMenuOrganizations,modifiedMenuOrganizations,
-            addMenuRets,addOperatorRets,modifiedMenuRets,modifiedOperatorRets,delMenus,delOperators);
+        let delMenuUUIDs=[],delMenuIds=[],delOperatorUUIDs=[],delOperatorIds=[];
+        delMenus.map(delMenu=>{
+            delMenuUUIDs.push(delMenu.uuid);
+            delMenuIds.push(delMenu.menuId);
+        });
+        delOperators.map(delOperator=>{
+            delOperatorUUIDs.push(delOperator.uuid);
+            delOperatorIds.push(delOperator.operatorId);
+        })
+
+
+
+        let retData = await  this.getProxy().syncAppMenus(addMenuOrganizations,modifiedMenuOrganizations,
+            addMenuRets,addOperatorRets,modifiedMenuRets,modifiedOperatorRets,delMenuUUIDs,delOperatorUUIDs,
+            addMenuIds,addOperatosIds,delMenuIds,delOperatorIds);
 
         return {menuOrganizationUpData};
     }

@@ -38,15 +38,33 @@ describe('menus Test Case:',()=>{
 
     let batchMenusTestCase =[
         {
-            menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/JZv0qnDunAAcE1U5QGqW7Q',
+            menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/8pyNRzO52CiVjCP3Nfbvvw',  //平台管理。
+            metaMenuUUID:'qFgus1zS5JyaH57I3QlorQ',
+            bCreatedOperators:true,
+        },
+        {
+            menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/8pyNRzO52CiVjCP3Nfbvvw',
+            metaMenuUUID:'Bd4g7vLe9xbwJCEJy0wdyg',
+            bCreatedOperators:true,
+        },
+        {
+            menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/8pyNRzO52CiVjCP3Nfbvvw',
+            metaMenuUUID:'7WvJioK5ziQzVqTT5eDBBg',
+            bCreatedOperators:true,
+        },
+
+        {
+            menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/JZv0qnDunAAcE1U5QGqW7Q',  //平台运营。
             metaMenuUUID:'TOSkzGil5QL1c7JyA9UT9g',
             bCreatedOperators:true,
         },
+
         {
             menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/JZv0qnDunAAcE1U5QGqW7Q',
             metaMenuUUID:'rx6BA4IqXIMSCni5aW53fg',
             bCreatedOperators:true,
         },
+
         ];
 
 

@@ -11,7 +11,6 @@ const  BaseOrganizationBusiness= require('./baseOrganizationBusiness');
 const serverConfig = require('../config/config');
 const  MenuProxy= require('../proxy/menuProxy');
 const utils = require('../common/utils');
-const menuOrganizationHelper = require('./menuOrganizationHelper');
 const inflection = require( 'inflection' );
 const cacheAble = require('componet-service-framework').cacheAble;
 const redis = require('../common/redis');
@@ -43,8 +42,7 @@ class MenuOrganizationBusiness extends BaseBusiness
         cacheAble.toCache(this.cacheTime ,this.getKeyName(ownerUUID),redis,value);
     }
 
-
-    async create(data,ctx)
+     preOrganizationData(data)
     {
         let ownerHref = data.ownerHref;
         if(! data.ownerType)
@@ -64,9 +62,14 @@ class MenuOrganizationBusiness extends BaseBusiness
         {
             data.description = `href: ${ownerHref || null}`;
         }
+        return data;
+    }
 
+
+    async create(data,ctx)
+    {
+        data = this.preOrganizationData(data);
         return super.create(data);
-
     }
 
 

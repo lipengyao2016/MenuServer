@@ -8,6 +8,12 @@ Menu(菜单)
 
 MenuGroup(菜单分组)
 
+Operator(操作)
+
+MetaMenu(元菜单)
+
+MetaOperator(元操作)
+
 
 #MenuGroup:
 
@@ -25,7 +31,7 @@ get
 
 ```
 {
-      applicationHref:"http://192.168.7.210:5000/api/v1.0.0/applications/gwUpBQ3HpXxItT7OcChoCA",
+      ownerHref:"http://192.168.7.210:5000/api/v1.0.0/applications/gwUpBQ3HpXxItT7OcChoCA",
       upLevelMenuGroupUUID:null,   //上级分组的UUID,为空即为取所有的顶级分组。
       expand:'downLevelMenuGroups',
 } 
@@ -37,7 +43,7 @@ get
 
 ```
 {
-  "href": "http://localhost:6001/api/v1/menuGroups?applicationHref=http%3A%2F%2Flocalhost%3A5000%2Fapi%2Fv1.0.0%2Fapplications%2FCQZNqVpEbFxyZ7ayW7x2yA",
+  "href": "http://localhost:6001/api/v1/menuGroups?ownerHref=http%3A%2F%2Flocalhost%3A5000%2Fapi%2Fv1.0.0%2Fapplications%2FCQZNqVpEbFxyZ7ayW7x2yA",
   "offset": 0,
   "limit": 5,
   "size": 5,
@@ -92,7 +98,7 @@ post
         status:"enabled",
         uiOrder: 2,
         upLevelMenuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/eTUA8Knx9e0OMumDevYQ7g',
-        applicationHref:'http://192.168.7.210:5000/api/v1.0.0/applications/gwUpBQ3HpXxItT7OcChoCA',, //当上级分组链接为空时，必须传此字段。
+        ownerHref:'http://192.168.7.210:5000/api/v1.0.0/applications/gwUpBQ3HpXxItT7OcChoCA',, //当上级分组链接为空时，必须传此字段。
  };
  
  
@@ -216,7 +222,7 @@ get
 
 ```
 {
-   applicationHref:'http://localhost:5000/api/v1.0.0/applications/BQZNqVpEbFxyZ7ayW7x2yA',
+   ownerHref:'http://localhost:5000/api/v1.0.0/applications/BQZNqVpEbFxyZ7ayW7x2yA',
 }
 ```
 
@@ -230,7 +236,7 @@ get
 		"name": "BQZNqVpEbFxyZ7ayW7x2yA",
 		"description": "345dfsf",
 		"status": "enabled",
-		"applicationHref": "http://localhost:5000/api/v1.0.0/applications/BQZNqVpEbFxyZ7ayW7x2yA",
+		"ownerHref": "http://localhost:5000/api/v1.0.0/applications/BQZNqVpEbFxyZ7ayW7x2yA",
 		"applicationUUID": "BQZNqVpEbFxyZ7ayW7x2yA"
 	},
 	"subMenuGroups": [{
@@ -284,7 +290,7 @@ get
 ```
 {
     "name" : "角色管理"   //菜单名称。
-    applicationHref:"http://192.168.7.210:5000/api/v1.0.0/applications/gwUpBQ3HpXxItT7OcChoCA", //要获取的某个系统下的菜单列表。
+    ownerHref:"http://192.168.7.210:5000/api/v1.0.0/applications/gwUpBQ3HpXxItT7OcChoCA", //要获取的某个系统下的菜单列表。
 }
 ```
 
@@ -293,7 +299,7 @@ get
 
 ```
 {
-  "href": "http://localhost:6001/api/v1/menus?applicationHref=http%3A%2F%2Flocalhost%3A5000%2Fapi%2Fv1.0.0%2Fapplications%2FCQZNqVpEbFxyZ7ayW7x2yA",
+  "href": "http://localhost:6001/api/v1/menus?ownerHref=http%3A%2F%2Flocalhost%3A5000%2Fapi%2Fv1.0.0%2Fapplications%2FCQZNqVpEbFxyZ7ayW7x2yA",
   "offset": 0,
   "limit": 5,
   "size": 5,
@@ -352,7 +358,7 @@ post
          uiOrder:3,
          menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/6cVizWBnkIRlGHCttOmspg',
 
-        // applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',//当没有选菜单分组时，此系统链接必须填。
+        // ownerHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',//当没有选菜单分组时，此系统链接必须填。
 
          operators:[
              {
@@ -545,7 +551,12 @@ delete
 
 statusCode=204
 
-###4.创建操作
+
+#Operator:
+
+Operator资源是指界面上的具体按钮功能。
+
+###1.创建操作
 
 http://localhost:6001/api/v1/operators
 
@@ -592,4 +603,53 @@ post
     "href": "http://localhost:6001/api/v1.0.0/menus/Arm6qwTn9UIpzkj70gnRrA"
   }
 }
+```
+
+#MetaMenu:
+
+MetaMenu资源是指由前端系统开发的功能模块菜单。
+
+###1.列表元菜单
+
+http://localhost:6001/api/v1.0.0/MetaMenus
+
+**http**
+
+get
+
+**request**
+
+```
+{
+    ownerHref:"http://192.168.7.210:5000/api/v1.0.0/applications/gwUpBQ3HpXxItT7OcChoCA", //要获取的某个系统下的菜单列表。
+}
+```
+
+
+**response**
+
+```
+{
+  "href": "http://localhost:6001/api/v1/metaMenus?ownerHref=http%3A%2F%2Flocalhost%3A5000%2Fapi%2Fv1.0.0%2Fapplications%2FCQZNqVpEbFxyZ7ayW7x2yA",
+  "offset": 0,
+  "limit": 5,
+  "size": 5,
+  "items": [
+    {
+      "href": "http://localhost:6001/api/v1.0.0/metaMenus/rx6BA4IqXIMSCni5aW53fg",
+      "name": "业态管理",
+      "menuId": "4578sdfs875d6",
+      "status": "enabled",
+      "createdAt": "2018-06-07 16:41:14",
+      "modifiedAt": "2018-06-07 16:41:14",
+      "menuOrganization": {
+        "href": "http://localhost:6001/api/v1.0.0/menuOrganizations/ycfqUhnlAEhxxfRqu5Vyqg"
+      },
+      "metaOperators": {
+        "href": "http://localhost:6001/api/v1.0.0/metaMenus/rx6BA4IqXIMSCni5aW53fg/metaOperators"
+      }
+    },
+  ]
+}
+
 ```
