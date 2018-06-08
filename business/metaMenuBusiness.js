@@ -7,13 +7,13 @@ const devUtils = require('develop-utils');
 const restRouterModel = require('rest-router-model');
 let BaseBusiness = restRouterModel.BaseBusiness;
 let getSchema = restRouterModel.getSchema;
-const  BaseOrganizationBusiness= require('./baseOrganizationBusiness');
+const  BaseMetaOrganizationBusiness= require('./baseMetaOrganizationBusiness');
 const serverConfig = require('../config/config');
 const  MetaMenuProxy= require('../proxy/metaMenuProxy');
 const utils = require('../common/utils');
 let parse = restRouterModel.parse;
 
-class MetaMenuBusiness extends BaseOrganizationBusiness
+class MetaMenuBusiness extends BaseMetaOrganizationBusiness
 {
     constructor()
     {
@@ -44,8 +44,8 @@ class MetaMenuBusiness extends BaseOrganizationBusiness
 
         if(bMenuOrganizationCreated)
         {
-           menuOrganizationUpData = parse(this.resourceConfig,'menuOrganization',menuOrganizationUpData);
-           menuOrganizationUpData = this.businesses['menuOrganization'].preOrganizationData(menuOrganizationUpData);
+           menuOrganizationUpData = parse(this.resourceConfig,'metaMenuOrganization',menuOrganizationUpData);
+           menuOrganizationUpData = this.businesses['metaMenuOrganization'].preOrganizationData(menuOrganizationUpData);
            addMenuOrganizations = menuOrganizationUpData;
         }
         else

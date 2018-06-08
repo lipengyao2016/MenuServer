@@ -21,6 +21,7 @@ module.exports = {
             status:{type:'string',value:'enabled'},
             downLevelMenuGroups:{type:'url',isSaveHref:false,isSchema : true,url:`http://${config.server.domain}:${config.server.port}/api/v1/menuOrganizations/`+'${uuid}/downLevelMenuGroups' },
             owner: {type: 'url'},
+            application: {type: 'url'},
             ownerType: {type: 'string'},
             version:{type:'string',value:'0.0.0'},
             createdAt: {type:'time'},
@@ -102,11 +103,32 @@ module.exports = {
     },
 
 
+    // 元菜单组织
+    "metaMenuOrganization":{
+        rest_api: 'batch' ,
+
+        extend_api: [
+            // {name: 'create', method: 'POST', url:'/api/:version/merchants/:merchantUUID/customers'},
+            // {name: 'listPackageTotalStatistics', method: 'GET', url:'/api/:version/goodsPackageTotalStatistics'},
+            //{name: 'listGoodsCostStatistics', method: 'GET', url:'/api/:version/goodsCostStatistics'},
+        ],
+
+        params: {
+            name:{type:'string'},
+            description:{type:'string'},
+            status:{type:'string',value:'enabled'},
+            application: {type: 'url'},
+            version:{type:'string',value:'0.0.0'},
+            createdAt: {type:'time'},
+            modifiedAt:{type:'time'},
+        },
+    },
+
 
     // 元菜单
     "metaMenu":{
         rest_api: 'batch',
-        super: 'menuOrganization',
+        super: 'metaMenuOrganization',
 
         extend_api: [
          /*   {name: 'listTreeMenus', method: 'GET', url:'/api/:version/treeMenus'},,*/

@@ -14,7 +14,7 @@ describe('metaMenus Test Case:',()=>{
         {
         name: '业态管理',
         menuId: '4578sdfs875d6',
-        ownerHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',
+        applicationHref:'http://localhost:5000/api/v1.0.0/applications/RQZNqVpEbFxyZ7ayW7x2yA',
     };
 
 
@@ -82,7 +82,7 @@ describe('metaMenus Test Case:',()=>{
         it('list metaMenus  ', function () {
             //this.timeout(0);
             let qs = {
-                ownerHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',
+                applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',
                 //expand:'operators',
             };
             return request.get(`${url}/metaMenus`,qs).then( ( { statusCode,body,headers,request} )=>{

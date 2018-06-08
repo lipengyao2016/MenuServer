@@ -47,7 +47,7 @@ class MetaMenuProxy extends  BaseProxyTranction
 
         let metaMenuName = this.curModel.prototype.tableName;
         let metaOperatorName = this.models['metaOperator'].prototype.tableName;
-        let menuOrganizationName = this.models['menuOrganization'].prototype.tableName;
+        let metaMenuOrganizationName = this.models['metaMenuOrganization'].prototype.tableName;
         let knex = this.knex;
 
         let menuName =this.models['menu'].prototype.tableName;
@@ -58,9 +58,9 @@ class MetaMenuProxy extends  BaseProxyTranction
 
             /** 2018/6/8  更新菜单组织。
              lpy-modifyed  */
-            return this.insert(knex,menuOrganizationName,addMenuOrganizations,trx)
+            return this.insert(knex,metaMenuOrganizationName,addMenuOrganizations,trx)
                 .then(data=>{
-                    return this.update(knex,menuOrganizationName,modifiedMenuOrganizations,trx);
+                    return this.update(knex,metaMenuOrganizationName,modifiedMenuOrganizations,trx);
                 })
                 /** 2018/6/8  更新元菜单和元操作。
                  lpy-modifyed  */

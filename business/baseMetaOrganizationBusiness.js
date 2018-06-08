@@ -9,7 +9,7 @@ let BaseBusiness = restRouterModel.BaseBusiness;
 let getSchema = restRouterModel.getSchema;
 const serverConfig = require('../config/config');
 
-class BaseOrganizationBusiness extends BaseBusiness
+class BaseMetaOrganizationBusiness extends BaseBusiness
 {
     constructor()
     {
@@ -27,29 +27,23 @@ class BaseOrganizationBusiness extends BaseBusiness
     async checkMenuOrganizationByOwner(data,bCreated )
     {
         let organizationUUID;
-        if(!data.menuOrganizationUUID) //数据中没有目录UUID，则检测是否有商户信息
+        if(!data.metaMenuOrganizationUUID) //数据中没有目录UUID，则检测是否有商户信息
         {
-            if(!data.ownerHref && data.applicationHref)
-            {
-                data.ownerHref = data.applicationHref;
-            }
-
-            let ownerHref = data.ownerHref;
-            if(ownerHref)
+            let applicationHref = data.applicationHref;
+            if(applicationHref)
             {
                 /*ctx.params.ownerUUID ||*/
                // let ownerUUID =  devUtils.getResourceUUIDInURL(ownerHref,'owners');
-                organizationUUID = await this.businesses['menuOrganization'].checkorganization(ownerHref,data.applicationHref,bCreated);
+                organizationUUID = await this.businesses['metaMenuOrganization'].checkorganization(data.applicationHref,bCreated);
                 if(bCreated)
                 {
-                    data.menuOrganizationUUID = organizationUUID;
+                    data.metaMenuOrganizationUUID = organizationUUID;
                 }
                 else
                  {
-                    data.menuOrganizationUUID = organizationUUID ? organizationUUID : 'Temp_organization_UUID';
+                    data.metaMenuOrganizationUUID = organizationUUID ? organizationUUID : 'Temp_organization_UUID';
                  }
 
-                delete data.ownerHref;
                 delete data.applicationHref;
             }
         }
@@ -69,6 +63,6 @@ class BaseOrganizationBusiness extends BaseBusiness
 }
 
 
-module.exports = BaseOrganizationBusiness;
+module.exports = BaseMetaOrganizationBusiness;
 
 

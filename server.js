@@ -21,11 +21,14 @@ let MenuOrganizationBusiness = require('./business/menuOrganizationBusiness');
 let OperatorBusiness = require('./business/operatorBusiness');
 let MetaMenuBusiness = require('./business/metaMenuBusiness');
 
+let MetaMenuOrganizationBusiness = require('./business/metaMenuOrganizationBusiness');
+
 extendBusinesses = {
     menuOrganization: new MenuOrganizationBusiness(),
     menuGroup: new MenuGroupBusiness(),
     menu: new MenuBusiness(),
     operator:new OperatorBusiness(),
+    metaMenuOrganization: new MetaMenuOrganizationBusiness(),
     metaMenu:new MetaMenuBusiness(),
 
 };

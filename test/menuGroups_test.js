@@ -11,13 +11,13 @@ const request = require('common-request').request;
 
 describe('menuGroup Test Case:',()=>{
     let menuGroupTestCase = {
-        name: '商户管理员运营xxx',
+        name: '门店设置',
         description: 'datagg',
-        uiOrder: 3,
+        uiOrder: 1,
       //  upLevelMenuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/ESQmj0c7OkWXYclyPxhU7w',
       //  menuOrganizationHref: 'http://localhost:6001/api/v1.0.0/menuOrganizations/PMM7M1sFnSTlDalZXqvPmQ',
-        ownerHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA',
-      //  merchantHref:'http://localhost:5006/api/v1.0.0/applications/bCqavvEkybc3ZZj65Vc05g',
+        ownerHref:'http://localhost:5000/api/v1.0.0/businessFormats/ESQmj0c7OkWXYclyPxhU7w',
+        applicationHref:'http://localhost:5000/api/v1.0.0/applications/RQZNqVpEbFxyZ7ayW7x2yA',
     };
     let applicationUUID = 'AppUUIDForTestCase';
     let menuGroupUUID = null;
@@ -27,7 +27,7 @@ describe('menuGroup Test Case:',()=>{
 
     tenantURL = url /*+ '/directories' + '/zbDG5Ul3MHzHOEBFYyIalQ' */;
 
-    menuGroupUUID = '8pyNRzO52CiVjCP3Nfbvvw';
+   // menuGroupUUID = '8pyNRzO52CiVjCP3Nfbvvw';
 
     describe('create test case:',  ()=>{
         it('success create an menuGroup',  ()=> {

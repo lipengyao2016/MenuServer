@@ -18,7 +18,7 @@ const redis = require('../common/redis');
 
 let parse = restRouterModel.parse;
 
-class MenuOrganizationBusiness extends BaseBusiness
+class MetaMenuOrganizationBusiness extends BaseBusiness
 {
     constructor()
     {
@@ -26,6 +26,7 @@ class MenuOrganizationBusiness extends BaseBusiness
         this.cacheTime = 60 * 5;
     }
 
+/*
     getKeyName(ownerUUID)
     {
         return `${serverConfig.knex.connection.host}:${serverConfig.knex.connection.port}` + '_' + ownerUUID;
@@ -41,36 +42,17 @@ class MenuOrganizationBusiness extends BaseBusiness
     {
         cacheAble.toCache(this.cacheTime ,this.getKeyName(ownerUUID),redis,value);
     }
+*/
 
      preOrganizationData(data)
     {
-        if(!data.ownerHref && data.applicationHref)
-        {
-            data.ownerHref =  data.applicationHref;
-        }
-
-        if(!data.ownerUUID)
-        {
-            data.ownerUUID = devUtils.getLastResourceUUIDInURL(data.ownerHref);
-        }
-
-        let ownerHref = data.ownerHref;
-        if(! data.ownerType && ownerHref)
-        {
-            let ownerStrs = ownerHref.split('/');;
-            if(ownerStrs.length > 2)
-            {
-                let ownerType = ownerStrs[ownerStrs.length-2];
-                data.ownerType = inflection.singularize(ownerType);
-            }
-        }
         if(!data.name)
         {
-            data.name = `owner-${data.ownerUUID}`;
+            data.name = `app-${data.applicationUUID}`;
         }
         if(!data.description)
         {
-            data.description = `href: ${ownerHref || null}`;
+            data.description = `href: ${data.applicationHref || null}`;
         }
         return data;
     }
@@ -85,21 +67,14 @@ class MenuOrganizationBusiness extends BaseBusiness
 
     async list(data,ctx)
     {
-        let cachePrevName = 'MenuOrganizationBusiness::list_';
-        let ownerHref = data.ownerHref;
-        if(!data.ownerUUID && data.ownerHref)
-        {
-            data.ownerUUID = devUtils.getLastResourceUUIDInURL(data.ownerHref);
-            delete data.ownerHref;
-        }
-
+        let cachePrevName = 'MetaMenuOrganizationBusiness::list_';
         if(!data.applicationUUID && data.applicationHref)
         {
             data.applicationUUID = devUtils.getLastResourceUUIDInURL(data.applicationHref);
             delete data.applicationHref;
         }
 
-       /* let organizationObj =await this.getCache( cachePrevName + JSON.stringify(data));
+      /*  let organizationObj =await this.getCache(cachePrevName +JSON.stringify(data));
         if(organizationObj)
         {
             return organizationObj;
@@ -114,19 +89,17 @@ class MenuOrganizationBusiness extends BaseBusiness
     }
 
 
-    async checkorganization(ownerHref,applicationHref, bCreated = true) {
-        let ownerUUID = devUtils.getLastResourceUUIDInURL(ownerHref);
+    async checkorganization(applicationHref, bCreated = true) {
         let organizationUUID = null;
-
         let applicationUUID = devUtils.getLastResourceUUIDInURL(applicationHref);
 
-        let {items: directories} = await this.list({ownerUUID: ownerUUID,applicationUUID:applicationUUID});
+        let {items: directories} = await this.list({applicationUUID:applicationUUID});
         if (directories.length > 0) {
             organizationUUID = directories[0].uuid;
             console.log('MenuOrganizationBusiness->checkorganization find organizationUUID:',organizationUUID);
         }
         else if (bCreated) {
-            let organizationData = parse(this.resourceConfig,'menuOrganization',{ownerHref,applicationHref});
+            let organizationData = parse(this.resourceConfig,'metaMenuOrganization',{applicationHref});
             let organization = await this.create(organizationData);
             organizationUUID = organization.uuid;
             console.log('MenuOrganizationBusiness->checkorganization create organizationUUID:',organizationUUID);
@@ -138,6 +111,6 @@ class MenuOrganizationBusiness extends BaseBusiness
 }
 
 
-module.exports = MenuOrganizationBusiness;
+module.exports = MetaMenuOrganizationBusiness;
 
 

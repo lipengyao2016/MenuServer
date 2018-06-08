@@ -11,7 +11,8 @@ const request = require('common-request').request;
 
 describe('menuOrganizations Test Case:',()=>{
     let menuOrganizationsTestCase = {
-        ownerHref:'http://localhost:5000/api/v1.0.0/applications/EQZNqVpEbFxyZ7ayW7x2yA',
+       // ownerHref:'http://localhost:5000/api/v1.0.0/businessFormat/EQZNqVpEbFxyZ7ayW7x2yA',
+        applicationHref:'http://localhost:5000/api/v1.0.0/applications/RQZNqVpEbFxyZ7ayW7x2yA',
     };
     let applicationUUID = 'AppUUIDForTestCase';
     let menuOrganizationsUUID = null;

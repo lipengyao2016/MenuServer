@@ -38,30 +38,30 @@ describe('menus Test Case:',()=>{
 
     let batchMenusTestCase =[
         {
-            menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/8pyNRzO52CiVjCP3Nfbvvw',  //平台管理。
-            metaMenuUUID:'qFgus1zS5JyaH57I3QlorQ',
+            menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/tB965zSB35qTDeBUm0jZUA',  //平台管理。
+            metaMenuUUID:'Uo5tOGst6Hiw2dCIIoNm7A',
             bCreatedOperators:true,
         },
         {
-            menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/8pyNRzO52CiVjCP3Nfbvvw',
-            metaMenuUUID:'Bd4g7vLe9xbwJCEJy0wdyg',
+            menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/tB965zSB35qTDeBUm0jZUA',
+            metaMenuUUID:'Bvql3jUOxgiHnVeYz2wMsQ',
             bCreatedOperators:true,
         },
         {
-            menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/8pyNRzO52CiVjCP3Nfbvvw',
-            metaMenuUUID:'7WvJioK5ziQzVqTT5eDBBg',
-            bCreatedOperators:true,
-        },
-
-        {
-            menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/JZv0qnDunAAcE1U5QGqW7Q',  //平台运营。
-            metaMenuUUID:'TOSkzGil5QL1c7JyA9UT9g',
+            menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/tB965zSB35qTDeBUm0jZUA',
+            metaMenuUUID:'1KqQp1x8exAGT7ieBQ10CQ',
             bCreatedOperators:true,
         },
 
         {
-            menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/JZv0qnDunAAcE1U5QGqW7Q',
-            metaMenuUUID:'rx6BA4IqXIMSCni5aW53fg',
+            menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/PR17XIa5iXsoUkH9wXzQEA',  //平台运营。
+            metaMenuUUID:'kQrTf8reOTCLb3A9XTxwwA',
+            bCreatedOperators:true,
+        },
+
+        {
+            menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/PR17XIa5iXsoUkH9wXzQEA',
+            metaMenuUUID:'Ax4n2dWHLpfTDHHMYHt2dw',
             bCreatedOperators:true,
         },
 
