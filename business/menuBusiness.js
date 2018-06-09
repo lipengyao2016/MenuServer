@@ -10,7 +10,7 @@ let getSchema = restRouterModel.getSchema;
 const  BaseOrganizationBusiness= require('./baseOrganizationBusiness');
 const serverConfig = require('../config/config');
 const  MenuProxy= require('../proxy/menuProxy');
-const utils = require('../common/utils');
+const utils = require('componet-service-framework').utils;
 
 let parse = restRouterModel.parse;
 

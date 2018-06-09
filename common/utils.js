@@ -64,6 +64,7 @@ exports.errorReturn = (error)=>{
     }
 };
 
+/*
 exports.excludeAttrData = function (dataInfo, excludeAttribute) {
     let retDataInfo = {};
     for (var item in dataInfo) {
@@ -73,4 +74,4 @@ exports.excludeAttrData = function (dataInfo, excludeAttribute) {
     }
 
     return retDataInfo;
-};
+};*/

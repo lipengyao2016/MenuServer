@@ -38,16 +38,16 @@ describe('menus Test Case:',()=>{
 
     let batchMenusTestCase =[
         {
-            menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/tB965zSB35qTDeBUm0jZUA',  //平台管理。
-            metaMenuUUID:'Uo5tOGst6Hiw2dCIIoNm7A',
+            menuGroupHref:'http://192.168.7.26:6001/api/v1.0.0/menuGroups/pH5VbOp461o6HuR7AVarBg',  //平台管理。
+            metaMenuUUID:'RAgiDDPYvHZCSRPnqDzc7w',
             bCreatedOperators:true,
         },
         {
-            menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/tB965zSB35qTDeBUm0jZUA',
-            metaMenuUUID:'Bvql3jUOxgiHnVeYz2wMsQ',
+            menuGroupHref:'http://192.168.7.26:6001/api/v1.0.0/menuGroups/pH5VbOp461o6HuR7AVarBg',
+            metaMenuUUID:'53pfufyf36v6J42nrYhEZQ',
             bCreatedOperators:true,
         },
-        {
+       /* {
             menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/tB965zSB35qTDeBUm0jZUA',
             metaMenuUUID:'1KqQp1x8exAGT7ieBQ10CQ',
             bCreatedOperators:true,
@@ -63,7 +63,7 @@ describe('menus Test Case:',()=>{
             menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/PR17XIa5iXsoUkH9wXzQEA',
             metaMenuUUID:'Ax4n2dWHLpfTDHHMYHt2dw',
             bCreatedOperators:true,
-        },
+        },*/
 
         ];
 
@@ -76,7 +76,7 @@ describe('menus Test Case:',()=>{
 
     tenantURL = url /*+ '/directories' + '/zbDG5Ul3MHzHOEBFYyIalQ' + '/menusPackages' + '/n97eIgDCIO6wecGkvc19UQ'*/ ;
 
-    menusUUID = 'PWLhNmRHYuAaGeKrWuasrQ';
+    //menusUUID = 'PWLhNmRHYuAaGeKrWuasrQ';
 
     describe('create test case:',  ()=>{
         it('success create an menus',  ()=> {
@@ -185,7 +185,7 @@ describe('menus Test Case:',()=>{
             //this.timeout(0);
             let qs = {
                 //ownerHref:'http://192.168.7.26:6000/api/v1.0.0/owners/Sad9YHDXhm9cyMeoNvr2ig',
-                ownerHref:'http://localhost:5000/api/v1.0.0/applications/BQZNqVpEbFxyZ7ayW7x2yA',
+                applicationHref:'http://localhost:5000/api/v1.0.0/applications/RQZNqVpEbFxyZ7ayW7x2yA',
              //   menuOrganizationHref : 'http://localhost:6001/api/v1.0.0/menuOrganizations/rIdUW07jGttn5VNGcPvnuQ',
             };
             return request.get(`${url}/treeMenus`,qs).then( ( { statusCode,body,headers,request} )=>{
@@ -208,6 +208,14 @@ describe('menus Test Case:',()=>{
            /* return request.delete(`${tenantURL}/menus/${menusUUID}`).then( ( { statusCode,body,headers,request} )=>{
                 expect(statusCode).to.equal(204);
             });*/
+        });
+
+        it('success batchDelete an menus', function () {
+            //this.timeout(0);
+
+             return request.delete(`${tenantURL}/menus/batchDelete`,{uuid:['YXgDUQGbmXZ9yqFFOtmErw','4M3FgIhN3btd7z4zpVL7pA']}).then( ( { statusCode,body,headers,request} )=>{
+                 expect(statusCode).to.equal(204);
+             });
         });
     });
 });
