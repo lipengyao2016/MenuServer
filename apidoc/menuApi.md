@@ -395,6 +395,25 @@ post
   },
 ```
 
+
+
+
+批量创建:
+```
+[
+        {
+            menuGroupHref:'http://192.168.7.26:6001/api/v1.0.0/menuGroups/pH5VbOp461o6HuR7AVarBg',  //平台管理。
+            metaMenuUUID:'RAgiDDPYvHZCSRPnqDzc7w',
+            bCreatedOperators:true,
+        },
+        {
+            menuGroupHref:'http://192.168.7.26:6001/api/v1.0.0/menuGroups/pH5VbOp461o6HuR7AVarBg',
+            metaMenuUUID:'53pfufyf36v6J42nrYhEZQ',
+            bCreatedOperators:true,
+        },
+]
+```
+
 **response**
 
 ```
@@ -623,7 +642,7 @@ MetaMenu资源是指由前端系统开发的功能模块菜单。
 
 ###1.列表元菜单
 
-http://localhost:6001/api/v1.0.0/MetaMenus
+http://localhost:6001/api/v1.0.0/metaMenus
 
 **http**
 
