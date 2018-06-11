@@ -53,17 +53,17 @@ describe('menus Test Case:',()=>{
             bCreatedOperators:true,
         },
 
-        /* {
-             menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/PR17XIa5iXsoUkH9wXzQEA',  //平台运营。
-             metaMenuUUID:'kQrTf8reOTCLb3A9XTxwwA',
+         {
+             menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/tB965zSB35qTDeBUm0jZUA',  //平台运营。
+             metaMenuUUID:'1KqQp1x8exAGT7ieBQ10CQ',
              bCreatedOperators:true,
          },
 
          {
-             menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/PR17XIa5iXsoUkH9wXzQEA',
-             metaMenuUUID:'Ax4n2dWHLpfTDHHMYHt2dw',
+             menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/tB965zSB35qTDeBUm0jZUA',
+             metaMenuUUID:'Bvql3jUOxgiHnVeYz2wMsQ',
              bCreatedOperators:true,
-         },*/
+         },
 
         ];
 
@@ -213,7 +213,7 @@ describe('menus Test Case:',()=>{
         it('success batchDelete an menus', function () {
             //this.timeout(0);
 
-             return request.delete(`${tenantURL}/menus/batchDelete`,{uuid:['EZWGvQdQdISSJMApSD32ww','qvL90y8mMh4RO7qbfJvYkg']}).then( ( { statusCode,body,headers,request} )=>{
+             return request.delete(`${tenantURL}/menus/batchDelete`,{uuid:['8KdDL56QDf1tuK3E6rH3Mg','gSWYc46G8tqEYYiZ9842hA']}).then( ( { statusCode,body,headers,request} )=>{
                  expect(statusCode).to.equal(204);
              });
         });
