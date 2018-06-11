@@ -513,7 +513,7 @@ post
 ```
 {
 	type: 'same', //diff,
-	same.data: [
+	data: [
 	{
 		uuid: 'Gw9ByeNPFhvtxehpON9DSg',
 		description: 'ddd',
