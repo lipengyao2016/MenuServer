@@ -191,6 +191,7 @@ class MenuBusiness extends BaseOrganizationBusiness
         {
            return {
                 menuOrganization:{},
+               subMenuGroups:[],
             }
         }
 
@@ -198,10 +199,11 @@ class MenuBusiness extends BaseOrganizationBusiness
 
         menuOrganizationObj = utils.excludeAttrData(menuOrganizationObj,['id','createdAt','modifiedAt']);
 
-        if(!menuOrganizationObj)
+        if(_.isEmpty(menuOrganizationObj))
         {
             return {
                 menuOrganization:{},
+                subMenuGroups:[],
             }
         }
 
