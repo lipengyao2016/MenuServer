@@ -47,11 +47,11 @@ describe('menus Test Case:',()=>{
             metaMenuUUID:'53pfufyf36v6J42nrYhEZQ',
             bCreatedOperators:true,
         },*/
-        {
+       /* {
             menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/tB965zSB35qTDeBUm0jZUA',
             metaMenuUUID:'GYa1rEV0N1OrCDKKvK0zrg',
             bCreatedOperators:true,
-        },
+        },*/
 
          {
              menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/tB965zSB35qTDeBUm0jZUA',  //平台运营。
@@ -141,11 +141,26 @@ describe('menus Test Case:',()=>{
         it('success batchUpdate an menus',  ()=> {
             //this.timeout(0);
 
-            let updateMenus = {
-                uuid:['mzNYalrUcBWrGsbxEsQcAQ','8KMwPfurIZoEHfENAShS6g'],
-                description:'ccc',
-                menuGroupUUID:'Y9ItzadYabvitqDcPHZpUQ',
-            };
+            let updateMenus ={
+               type:'same', //diff,same.
+               data: [
+                {
+                uuid:'Gw9ByeNPFhvtxehpON9DSg',
+                description:'ddd',
+                    menuGroupUUID:'tB965zSB35qTDeBUm0jZUA',
+              //  uiOrder:2,
+                },
+                {
+                    uuid:'2aBWApoB2BsrEOheFEuXHg',
+                    description:'ddd',
+                    menuGroupUUID:'tB965zSB35qTDeBUm0jZUA',
+                //    uiOrder:3,
+                },
+                ]
+        };
+
+
+
             return request.post(`${url}/menus/batchUpdate`,updateMenus).then( ( {statusCode, body, headers, request} )=>{
                 expect(statusCode).to.equal(200);
 

@@ -512,10 +512,23 @@ post
 
 ```
 {
-                uuid:['mzNYalrUcBWrGsbxEsQcAQ','8KMwPfurIZoEHfENAShS6g'],
-                description:'ccc',
-                menuGroupUUID:'Y9ItzadYabvitqDcPHZpUQ',
-            }
+	type: 'same', //diff,
+	same.data: [
+	{
+		uuid: 'Gw9ByeNPFhvtxehpON9DSg',
+		description: 'ddd',
+		menuGroupUUID: 'tB965zSB35qTDeBUm0jZUA',
+		//uiOrder: 2,
+
+	},
+	{
+		uuid: '2aBWApoB2BsrEOheFEuXHg',
+		description: 'ddd',
+		menuGroupUUID: 'tB965zSB35qTDeBUm0jZUA',
+		//uiOrder: 3,
+	},
+	]
+}
 ```
 
 **response**
