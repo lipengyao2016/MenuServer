@@ -112,6 +112,31 @@ post
  
 ```
 
+
+第二种方式 ，走业务组件
+
+http://localhost:6101/api/v1.0.0/menuGroups
+
+**request**
+
+```
+
+{
+       "name": "平台管理qq",
+       "description": "datagg",
+        status:"enabled",
+        uiOrder: 2,
+        upLevelMenuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/eTUA8Knx9e0OMumDevYQ7g',
+        ownerType:'businessFormat',
+        ownerUUID:'ESQmj0c7OkWXYclyPxhU7w',
+        applicationName:'LaiKoo-Platform',
+ };
+
+
+```
+
+
+
 response:
 
 ```
@@ -234,6 +259,24 @@ get
    ownerHref:"http://192.168.7.210:5000/api/v1.0.0/businessFormat/gwUpBQ3HpXxItT7OcChoCA",
    applicationHref:'http://localhost:5000/api/v1.0.0/applications/RQZNqVpEbFxyZ7ayW7x2yA',
 }
+```
+
+
+第二种方式 ，走业务组件
+
+http://localhost:6101/api/v1/treeMenus
+
+**request**
+
+```
+
+{
+        ownerType:'businessFormat',
+        ownerUUID:'ESQmj0c7OkWXYclyPxhU7w',
+        applicationName:'LaiKoo-Platform',
+ };
+
+
 ```
 
 
@@ -690,6 +733,21 @@ get
 }
 ```
 
+
+第二种方式 ，走业务组件
+
+http://localhost:6101/api/v1.0.0/metaMenus
+
+**request**
+
+```
+
+{
+        applicationName:'LaiKoo-Platform',
+ };
+
+
+```
 
 **response**
 
