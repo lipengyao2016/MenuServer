@@ -142,19 +142,19 @@ describe('menus Test Case:',()=>{
             //this.timeout(0);
 
             let updateMenus ={
-               type:'same', //diff,same.
+               type:'diff', //diff,same.
                data: [
                 {
                 uuid:'Gw9ByeNPFhvtxehpON9DSg',
-                description:'ddd',
+                description:'fff',
                     menuGroupUUID:'tB965zSB35qTDeBUm0jZUA',
-              //  uiOrder:2,
+                uiOrder:6,
                 },
                 {
                     uuid:'2aBWApoB2BsrEOheFEuXHg',
-                    description:'ddd',
+                    description:'ggg',
                     menuGroupUUID:'tB965zSB35qTDeBUm0jZUA',
-                //    uiOrder:3,
+                    uiOrder:7,
                 },
                 ]
         };
