@@ -189,7 +189,9 @@ class MenuBusiness extends BaseOrganizationBusiness
 
         if(!qs.menuOrganizationUUID)
         {
-            return null;
+           return {
+                menuOrganization:{},
+            }
         }
 
         let menuOrganizationObj = await this.models['menuOrganization'].getByKeyId(qs.menuOrganizationUUID);
@@ -198,7 +200,9 @@ class MenuBusiness extends BaseOrganizationBusiness
 
         if(!menuOrganizationObj)
         {
-            return null;
+            return {
+                menuOrganization:{},
+            }
         }
 
         //{items,size}
