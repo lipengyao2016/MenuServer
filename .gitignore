@@ -11,6 +11,8 @@ pids
 *.seed
 *.pid.lock
 
+package-lock.json
+
 
 #bak files
 *.bak*
