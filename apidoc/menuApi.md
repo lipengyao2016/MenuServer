@@ -583,6 +583,27 @@ delete
 statusCode=204
 
 
+###7.批量删除菜单。
+
+http://localhost:6001/api/v1/menus/batchDelete
+
+**http**
+
+delete
+
+**request**
+
+```
+{
+       uuid:['mzNYalrUcBWrGsbxEsQcAQ','8KMwPfurIZoEHfENAShS6g'],
+}
+```
+
+**response**
+
+statusCode=204
+
+
 #Operator:
 
 Operator资源是指界面上的具体按钮功能。

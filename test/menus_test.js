@@ -37,7 +37,7 @@ describe('menus Test Case:',()=>{
 
 
     let batchMenusTestCase =[
-        {
+/*        {
             menuGroupHref:'http://192.168.7.26:6001/api/v1.0.0/menuGroups/pH5VbOp461o6HuR7AVarBg',  //平台管理。
             metaMenuUUID:'RAgiDDPYvHZCSRPnqDzc7w',
             bCreatedOperators:true,
@@ -46,24 +46,24 @@ describe('menus Test Case:',()=>{
             menuGroupHref:'http://192.168.7.26:6001/api/v1.0.0/menuGroups/pH5VbOp461o6HuR7AVarBg',
             metaMenuUUID:'53pfufyf36v6J42nrYhEZQ',
             bCreatedOperators:true,
-        },
-       /* {
-            menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/tB965zSB35qTDeBUm0jZUA',
-            metaMenuUUID:'1KqQp1x8exAGT7ieBQ10CQ',
-            bCreatedOperators:true,
-        },
-
-        {
-            menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/PR17XIa5iXsoUkH9wXzQEA',  //平台运营。
-            metaMenuUUID:'kQrTf8reOTCLb3A9XTxwwA',
-            bCreatedOperators:true,
-        },
-
-        {
-            menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/PR17XIa5iXsoUkH9wXzQEA',
-            metaMenuUUID:'Ax4n2dWHLpfTDHHMYHt2dw',
-            bCreatedOperators:true,
         },*/
+        {
+            menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/tB965zSB35qTDeBUm0jZUA',
+            metaMenuUUID:'GYa1rEV0N1OrCDKKvK0zrg',
+            bCreatedOperators:true,
+        },
+
+        /* {
+             menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/PR17XIa5iXsoUkH9wXzQEA',  //平台运营。
+             metaMenuUUID:'kQrTf8reOTCLb3A9XTxwwA',
+             bCreatedOperators:true,
+         },
+
+         {
+             menuGroupHref:'http://localhost:6001/api/v1.0.0/menuGroups/PR17XIa5iXsoUkH9wXzQEA',
+             metaMenuUUID:'Ax4n2dWHLpfTDHHMYHt2dw',
+             bCreatedOperators:true,
+         },*/
 
         ];
 
@@ -76,7 +76,7 @@ describe('menus Test Case:',()=>{
 
     tenantURL = url /*+ '/directories' + '/zbDG5Ul3MHzHOEBFYyIalQ' + '/menusPackages' + '/n97eIgDCIO6wecGkvc19UQ'*/ ;
 
-    //menusUUID = 'PWLhNmRHYuAaGeKrWuasrQ';
+    menusUUID = 'OcaT3czBIfu4vtkd0d6bmg';
 
     describe('create test case:',  ()=>{
         it('success create an menus',  ()=> {
@@ -202,18 +202,18 @@ describe('menus Test Case:',()=>{
     });
 
     describe('delete test case:',()=>{
-        it('success delete an menus', function () {
+/*        it('success delete an menus', function () {
             //this.timeout(0);
 
-           /* return request.delete(`${tenantURL}/menus/${menusUUID}`).then( ( { statusCode,body,headers,request} )=>{
+            return request.delete(`${tenantURL}/menus/${menusUUID}`).then( ( { statusCode,body,headers,request} )=>{
                 expect(statusCode).to.equal(204);
-            });*/
-        });
+            });
+        });*/
 
         it('success batchDelete an menus', function () {
             //this.timeout(0);
 
-             return request.delete(`${tenantURL}/menus/batchDelete`,{uuid:['YXgDUQGbmXZ9yqFFOtmErw','4M3FgIhN3btd7z4zpVL7pA']}).then( ( { statusCode,body,headers,request} )=>{
+             return request.delete(`${tenantURL}/menus/batchDelete`,{uuid:['EZWGvQdQdISSJMApSD32ww','qvL90y8mMh4RO7qbfJvYkg']}).then( ( { statusCode,body,headers,request} )=>{
                  expect(statusCode).to.equal(204);
              });
         });

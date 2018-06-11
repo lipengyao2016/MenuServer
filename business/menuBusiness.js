@@ -250,7 +250,29 @@ class MenuBusiness extends BaseOrganizationBusiness
         }
 
         curMenuGroups.subMenuGroups.map(subMenuGroupItem=>this.addMenusToMenuGroups(subMenuGroupItem,menuByGroups));
+    }
 
+
+    async batchDelete(data,ctx){
+        return await  this.delete(data,ctx);
+    }
+
+
+    async delete(data,ctx){
+        let oldOperatorObjs = await this.models['operator'].listAll({menuUUID:data.uuid});
+        let oldOperatorUUIDs = oldOperatorObjs.items.map(oldOperator=>oldOperator.uuid);
+        let retData;
+        if(oldOperatorUUIDs.length <= 0)
+        {
+            retData =await super.delete(data.uuid);
+        }
+        else
+        {
+            retData = await this.getMenuProxy().deleteData(data.uuid,oldOperatorUUIDs);
+
+        }
+
+        return retData;
     }
 
 
