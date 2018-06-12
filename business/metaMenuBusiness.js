@@ -114,12 +114,15 @@ class MetaMenuBusiness extends BaseMetaOrganizationBusiness
         };
 
         metaMenusObjs.items.map(metaMenuItem=>{
-            let metaMenuData = _.find(menusObjs.items,menuItem=>_.isEqual(menuItem.menuId,metaMenuItem.menuId));
-            if(!metaMenuData)
+            let menuData = _.find(menusObjs.items,menuItem=>_.isEqual(menuItem.menuId,metaMenuItem.menuId));
+            if(!menuData || (menuData && !menuData.menuGroupUUID))
             {
                 unAllocMetaMenus.items.push(_.pick(metaMenuItem,['uuid','name','menuId']));
             }
+
         });
+
+
         unAllocMetaMenus.size = unAllocMetaMenus.items.length;
 
         return unAllocMetaMenus;

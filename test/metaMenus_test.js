@@ -98,8 +98,11 @@ describe('metaMenus Test Case:',()=>{
         it('list unAllocatedMetaMenus  ', function () {
             //this.timeout(0);
             let qs = {
-                applicationHref:'http://localhost:5000/api/v1.0.0/applications/RQZNqVpEbFxyZ7ayW7x2yA',
+                /*applicationHref:'http://localhost:5000/api/v1.0.0/applications/RQZNqVpEbFxyZ7ayW7x2yA',
+                ownerHref:'http://localhost:5000/api/v1.0.0/businessFormats/ESQmj0c7OkWXYclyPxhU7w',*/
+
                 ownerHref:'http://localhost:5000/api/v1.0.0/businessFormats/ESQmj0c7OkWXYclyPxhU7w',
+                applicationHref:'http://192.168.7.26:6000/api/v1.0.0/applications/Sad9YHDXhm9cyMeoNvr2ig',
                 //expand:'operators',
             };
             return request.get(`${url}/unAllocatedMetaMenus`,qs).then( ( { statusCode,body,headers,request} )=>{
