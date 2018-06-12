@@ -833,3 +833,57 @@ get
 }
 
 ```
+
+
+###3.列表元操作
+
+http://localhost:6001/api/v1.0.0/metaOperators
+
+**http**
+
+get
+
+**request**
+
+```
+{
+    metaMenuUUID: 'GYa1rEV0N1OrCDKKvK0zrg',
+}
+```
+
+
+**response**
+
+```
+{
+  "href": "http://localhost:6001/api/v1/metaOperators?metaMenuUUID=GYa1rEV0N1OrCDKKvK0zrg",
+  "offset": 0,
+  "limit": 2,
+  "size": 2,
+  "items": [
+    {
+      "href": "http://localhost:6001/api/v1.0.0/metaOperators/ssR4ruTtYuLh6FxUP3gboA",
+      "name": "菜单列表",
+      "operatorId": "0E353358-75B4-417E-AFEA-7E5A7CE56AA2",
+      "status": "enabled",
+      "createdAt": "2018-06-11 10:25:15",
+      "modifiedAt": "2018-06-11 10:25:15",
+      "metaMenu": {
+        "href": "http://localhost:6001/api/v1.0.0/metaMenus/GYa1rEV0N1OrCDKKvK0zrg"
+      }
+    },
+    {
+      "href": "http://localhost:6001/api/v1.0.0/metaOperators/yrA5iZrWKdv7MCLARhFrcg",
+      "name": "新增菜单",
+      "operatorId": "9175DE46-1DFD-4646-AC9E-1F66AD724511",
+      "status": "enabled",
+      "createdAt": "2018-06-11 10:25:15",
+      "modifiedAt": "2018-06-11 10:25:15",
+      "metaMenu": {
+        "href": "http://localhost:6001/api/v1.0.0/metaMenus/GYa1rEV0N1OrCDKKvK0zrg"
+      }
+    }
+  ]
+}
+
+```

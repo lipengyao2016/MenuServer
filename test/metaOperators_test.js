@@ -113,6 +113,8 @@ describe('metaOperator Test Case:',()=>{
                 /*               offset:0,
                                limit:1,
                                createdAt:'[,2018-04-18 18:13:28]'*/
+
+                metaMenuUUID: 'GYa1rEV0N1OrCDKKvK0zrg',
             };
             return request.get(`${tenantURL}/metaOperators`,qs).then( ( { statusCode,body,headers,request} )=>{
 
