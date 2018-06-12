@@ -95,6 +95,23 @@ describe('metaMenus Test Case:',()=>{
             });
         });
 
+        it('list unAllocatedMetaMenus  ', function () {
+            //this.timeout(0);
+            let qs = {
+                applicationHref:'http://localhost:5000/api/v1.0.0/applications/RQZNqVpEbFxyZ7ayW7x2yA',
+                ownerHref:'http://localhost:5000/api/v1.0.0/businessFormats/ESQmj0c7OkWXYclyPxhU7w',
+                //expand:'operators',
+            };
+            return request.get(`${url}/unAllocatedMetaMenus`,qs).then( ( { statusCode,body,headers,request} )=>{
+
+                console.log('unAllocatedMetaMenus test list   :' + JSON.stringify(body,null,2));
+
+                expect(statusCode).to.equal(200);
+                expect(headers['content-type']).to.equal('application/json; charset=utf-8');
+                //expect(uriReg.applicationURIReg.test(res.headers['location'])).to.be.true;
+            });
+        });
+
     });
 
     describe('delete test case:',()=>{

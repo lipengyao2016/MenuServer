@@ -66,6 +66,14 @@ class BaseOrganizationBusiness extends BaseBusiness
 
         /*let {items,size} =*/ return await super.list(qs);
     }
+
+    async listAll(data,ctx){
+
+        let qs = _.clone(data);
+        let organization = await  this.checkMenuOrganizationByOwner(qs,false);
+
+        /*let {items,size} =*/ return await super.listAll(qs);
+    }
 }
 
 

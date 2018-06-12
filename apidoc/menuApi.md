@@ -776,3 +776,65 @@ http://localhost:6101/api/v1.0.0/metaMenus
 }
 
 ```
+
+
+###2.列表未分配菜单的元菜单
+
+http://localhost:6001/api/v1.0.0/unAllocatedMetaMenus
+
+**http**
+
+get
+
+**request**
+
+```
+{
+    ownerHref:'http://localhost:5000/api/v1.0.0/businessFormats/ESQmj0c7OkWXYclyPxhU7w',
+    applicationHref:'http://localhost:5000/api/v1.0.0/applications/CQZNqVpEbFxyZ7ayW7x2yA', //要获取的某个系统下的菜单列表。
+}
+```
+
+
+第二种方式 ，走业务组件
+
+http://localhost:6101/api/v1.0.0/unAllocatedMetaMenus
+
+**request**
+
+```
+
+{
+        applicationName:'LaiKoo-Platform',
+        ownerType:'businessFormat',
+        ownerUUID:'ESQmj0c7OkWXYclyPxhU7w',
+};
+
+
+```
+
+**response**
+
+```
+{
+  "size": 3,
+  "items": [
+    {
+      "uuid": "GYa1rEV0N1OrCDKKvK0zrg",
+      "name": "菜单管理aa",
+      "menuId": "5350A6A5-F274-4CCE-AD2A-866D04579CE8"
+    },
+    {
+      "uuid": "Bvql3jUOxgiHnVeYz2wMsQ",
+      "name": "插件管理",
+      "menuId": "64D05948-36AD-41A0-AF78-75FA23D657C5"
+    },
+    {
+      "uuid": "1KqQp1x8exAGT7ieBQ10CQ",
+      "name": "用户管理",
+      "menuId": "FCD1FDA4-A7A2-43D9-B4E1-3890A86E924C"
+    }
+  ]
+}
+
+```

@@ -94,6 +94,38 @@ class MetaMenuBusiness extends BaseMetaOrganizationBusiness
     }
 
 
+    async listUnAllocatedMetaMenus(data,ctx)
+    {
+        let qs = _.clone(data.query);
+        let applicationHref = qs.applicationHref;
+        let ownerHref = qs.ownerHref;
+        if(!ownerHref)
+        {
+            ownerHref = applicationHref;
+        }
+        let organization = await  this.checkMenuOrganizationByOwner(qs,false);
+        let metaMenusObjs = await this.model.listAll({metaMenuOrganizationUUID:qs.metaMenuOrganizationUUID});
+
+        let menusObjs = await this.businesses['menu'].listAll({applicationHref,ownerHref});
+
+        let unAllocMetaMenus = {
+            size:0,
+            items:[],
+        };
+
+        metaMenusObjs.items.map(metaMenuItem=>{
+            let metaMenuData = _.find(menusObjs.items,menuItem=>_.isEqual(menuItem.menuId,metaMenuItem.menuId));
+            if(!metaMenuData)
+            {
+                unAllocMetaMenus.items.push(_.pick(metaMenuItem,['uuid','name','menuId']));
+            }
+        });
+        unAllocMetaMenus.size = unAllocMetaMenus.items.length;
+
+        return unAllocMetaMenus;
+    }
+
+
 }
 
 

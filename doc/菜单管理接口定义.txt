@@ -71,6 +71,20 @@ menuServer(菜单管理)
   16、删除菜单时，同时删除操作。                              ok                            
   17. 批量删除菜单的接口。                                    ok
 	18. 列表出某个应用下还没有分配菜单的元菜单。
+	request:
+	{
+	  applicationHref:'',
+	  ownerHref:'',
+	}
+	
+	response:
+	{
+	  size:
+	  items:
+	  [metaMenusObj]
+	}
+	
+	
   
   1、菜单组织增加ownerUUID，实现多种类型映射 (区别app与业态)
 	2、增加菜单别名资源 

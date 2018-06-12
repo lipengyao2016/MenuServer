@@ -132,7 +132,9 @@ module.exports = {
 
         extend_api: [
          /*   {name: 'listTreeMenus', method: 'GET', url:'/api/:version/treeMenus'},,*/
+
             {name: 'syncAppMenus', method: 'POST', url:'/api/:version/syncAppMenus'},
+            {name: 'listUnAllocatedMetaMenus', method: 'GET', url:'/api/:version/unAllocatedMetaMenus'},
         ],
         params: {
 
