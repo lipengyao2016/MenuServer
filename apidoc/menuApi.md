@@ -848,6 +848,7 @@ get
 ```
 {
     metaMenuUUID: 'GYa1rEV0N1OrCDKKvK0zrg',
+    menuUUID: 'Gw9ByeNPFhvtxehpON9DSg',     //菜单UUID,元菜单UUID,二选一。
 }
 ```
 

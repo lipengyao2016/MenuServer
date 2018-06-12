@@ -114,7 +114,8 @@ describe('metaOperator Test Case:',()=>{
                                limit:1,
                                createdAt:'[,2018-04-18 18:13:28]'*/
 
-                metaMenuUUID: 'GYa1rEV0N1OrCDKKvK0zrg',
+                //metaMenuUUID: 'GYa1rEV0N1OrCDKKvK0zrg',
+                menuUUID: 'Gw9ByeNPFhvtxehpON9DSg',
             };
             return request.get(`${tenantURL}/metaOperators`,qs).then( ( { statusCode,body,headers,request} )=>{
 

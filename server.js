@@ -23,6 +23,8 @@ let MetaMenuBusiness = require('./business/metaMenuBusiness');
 
 let MetaMenuOrganizationBusiness = require('./business/metaMenuOrganizationBusiness');
 
+let MetaOperatorBusiness = require('./business/metaOperatorBusiness');
+
 extendBusinesses = {
     menuOrganization: new MenuOrganizationBusiness(),
     menuGroup: new MenuGroupBusiness(),
@@ -30,6 +32,7 @@ extendBusinesses = {
     operator:new OperatorBusiness(),
     metaMenuOrganization: new MetaMenuOrganizationBusiness(),
     metaMenu:new MetaMenuBusiness(),
+    metaOperator:new MetaOperatorBusiness(),
 
 };
 
