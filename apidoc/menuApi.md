@@ -113,9 +113,8 @@ post
 ```
 
 
-第二种方式 ，走业务组件
+第二种方式 ，走网关
 
-http://localhost:6101/api/v1.0.0/menuGroups
 
 **request**
 
@@ -262,9 +261,8 @@ get
 ```
 
 
-第二种方式 ，走业务组件
+第二种方式 ，走网关
 
-http://localhost:6101/api/v1/treeMenus
 
 **request**
 
@@ -734,9 +732,8 @@ get
 ```
 
 
-第二种方式 ，走业务组件
+第二种方式 ，走网关
 
-http://localhost:6101/api/v1.0.0/metaMenus
 
 **request**
 
@@ -796,9 +793,7 @@ get
 ```
 
 
-第二种方式 ，走业务组件
-
-http://localhost:6101/api/v1.0.0/unAllocatedMetaMenus
+第二种方式 ，走网关
 
 **request**
 
