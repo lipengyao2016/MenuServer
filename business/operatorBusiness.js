@@ -9,7 +9,7 @@ let BaseBusiness = restRouterModel.BaseBusiness;
 let getSchema = restRouterModel.getSchema;
 const  BaseOrganizationBusiness= require('./baseOrganizationBusiness');
 const serverConfig = require('../config/config');
-const  MenuProxy= require('../proxy/menuProxy');
+const  OperatorProxy= require('../proxy/operatorProxy');
 const utils = require('../common/utils');
 
 let parse = restRouterModel.parse;
@@ -20,6 +20,16 @@ class OperatorBusiness extends BaseOrganizationBusiness
     {
         super();
     }
+
+    getProxy()
+    {
+        if(!this.proxy)
+        {
+            this.proxy = new OperatorProxy(this.dbOperater,this.model,this.models);
+        }
+        return this.proxy;
+    }
+
 
 
     async preProcessOperatorData(data)
@@ -37,20 +47,41 @@ class OperatorBusiness extends BaseOrganizationBusiness
             }
             delete  data.metaOperatorUUID;
         }
-
         return data;
+    }
+
+    async getOldOperatorData(menuUUID)
+    {
+        let oldOperatorData = await  this.model.listAll({menuUUID});
+        return oldOperatorData.items.map(operatorItem=>operatorItem.uuid);
     }
 
 
     async create(data,ctx)
     {
+        let oldOperatorUUIDs = [];
+        if(data.menuUUID)
+        {
+            oldOperatorUUIDs = await  this.getOldOperatorData(data.menuUUID);
+        }
+
         data = await  this.preProcessOperatorData(data);
-        return super.create(data);
+
+        //return super.create(data,ctx);
+
+        let retData = await this.getProxy().updateData(oldOperatorUUIDs,data);
+        return data;
     }
 
 
     async batchCreate(data,ctx)
     {
+        let oldOperatorUUIDs = [];
+        if(data[0].menuUUID)
+        {
+            oldOperatorUUIDs = await  this.getOldOperatorData(data[0].menuUUID);
+        }
+
         let operators = [];
         for(let i = 0;i < data.length;i++)
         {
@@ -58,7 +89,10 @@ class OperatorBusiness extends BaseOrganizationBusiness
             operators.push(curData);
         }
 
-        return super.batchCreate(operators);
+        //return super.batchCreate(operators);
+
+        let retData = await this.getProxy().updateData(oldOperatorUUIDs,operators);
+        return operators;
     }
 
 

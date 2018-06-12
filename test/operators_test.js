@@ -21,13 +21,13 @@ describe('operator Test Case:',()=>{
 
     let batchOperatorTestCase = [
         {
-        menuHref: 'http://localhost:6001/api/v1.0.0/menus/PWLhNmRHYuAaGeKrWuasrQ',
-        metaOperatorUUID:'LrmWXTvdcnSQhCopNVM4NQ',
+        menuUUID: 'Gw9ByeNPFhvtxehpON9DSg',
+        metaOperatorUUID:'yrA5iZrWKdv7MCLARhFrcg',
     },
-        {
-            menuHref: 'http://localhost:6001/api/v1.0.0/menus/PWLhNmRHYuAaGeKrWuasrQ',
+      /*  {
+            menuUUID: 'PWLhNmRHYuAaGeKrWuasrQ',
             metaOperatorUUID:'DYPyoTn0m4I1TG4JMeOoeQ',
-        },
+        },*/
     ];
 
     let applicationUUID = 'AppUUIDForTestCase';

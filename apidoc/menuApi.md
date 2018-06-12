@@ -689,8 +689,8 @@ post
 第二种方式:
 ```
   {
-         menuHref: 'http://localhost:6001/api/v1.0.0/menus/PWLhNmRHYuAaGeKrWuasrQ',
-         metaOperatorUUID:'LrmWXTvdcnSQhCopNVM4NQ',   //元操作UUID.
+          menuUUID: 'Gw9ByeNPFhvtxehpON9DSg',
+          metaOperatorUUID:'LrmWXTvdcnSQhCopNVM4NQ',   //元操作UUID.
   },
 ```
 
