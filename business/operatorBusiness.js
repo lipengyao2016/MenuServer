@@ -50,9 +50,9 @@ class OperatorBusiness extends BaseOrganizationBusiness
         return data;
     }
 
-    async getOldOperatorData(menuUUID)
+    async getOldOperatorData(menuUUIDS)
     {
-        let oldOperatorData = await  this.model.listAll({menuUUID});
+        let oldOperatorData = await  this.model.listAll({menuUUID:menuUUIDS});
         return oldOperatorData.items.map(operatorItem=>operatorItem.uuid);
     }
 
@@ -77,9 +77,18 @@ class OperatorBusiness extends BaseOrganizationBusiness
     async batchCreate(data,ctx)
     {
         let oldOperatorUUIDs = [];
-        if(data[0].menuUUID)
+        let menuUUIDs = [];
+        data.map(operatorItem=>{
+            if(menuUUIDs.indexOf(operatorItem.menuUUID) < 0)
+            {
+                menuUUIDs.push(operatorItem.menuUUID);
+            }
+        });
+
+
+        if(menuUUIDs.length > 0)
         {
-            oldOperatorUUIDs = await  this.getOldOperatorData(data[0].menuUUID);
+            oldOperatorUUIDs = await  this.getOldOperatorData(menuUUIDs);
         }
 
         let operators = [];

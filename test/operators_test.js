@@ -22,12 +22,12 @@ describe('operator Test Case:',()=>{
     let batchOperatorTestCase = [
         {
         menuUUID: 'Gw9ByeNPFhvtxehpON9DSg',
-        metaOperatorUUID:'yrA5iZrWKdv7MCLARhFrcg',
+        metaOperatorUUID:'sYL7DjzBos6JFbQwnXb1xA',
     },
-      /*  {
-            menuUUID: 'PWLhNmRHYuAaGeKrWuasrQ',
-            metaOperatorUUID:'DYPyoTn0m4I1TG4JMeOoeQ',
-        },*/
+        {
+            menuUUID: '2aBWApoB2BsrEOheFEuXHg',
+            metaOperatorUUID:'yrA5iZrWKdv7MCLARhFrcg',
+        },
     ];
 
     let applicationUUID = 'AppUUIDForTestCase';
