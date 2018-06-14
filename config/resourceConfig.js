@@ -89,6 +89,8 @@ module.exports = {
             //{name: 'listGoodsTotalStatistics', method: 'GET', url:'/api/:version/goodsTotalStatistics'},
            // {name: 'listGoodsWeightStatistics', method: 'GET', url:'/api/:version/goodsWeightStatistics'},
            // {name: 'listGoodsCostStatistics', method: 'GET', url:'/api/:version/goodsCostStatistics'},
+
+            {name: 'clearOperatorsByMenus', method: 'POST', url:'/api/:version/clearOperatorsByMenus'},
         ],
 
         params: {

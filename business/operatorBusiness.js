@@ -74,6 +74,18 @@ class OperatorBusiness extends BaseOrganizationBusiness
     }
 
 
+    async clearOperatorsByMenus(data,ctx)
+    {
+        let menuUUIDs = data.body.menuUUIDs;
+        let oldOperatorUUIDs = [];
+        if(menuUUIDs.length > 0)
+        {
+            oldOperatorUUIDs = await  this.getOldOperatorData(menuUUIDs);
+        }
+        let retData = await this.getProxy().updateData(oldOperatorUUIDs,[]);
+        return {ret:true};
+    }
+
     async batchCreate(data,ctx)
     {
         let oldOperatorUUIDs = [];

@@ -40,7 +40,7 @@ menuServer(菜单管理)
   
   8.菜单分组，菜单，操作，做graphql                               ok
   
-  9.文件服务器 ，菜单图标的素材库。
+  9.文件服务器 ，菜单图标的素材库。                               ok
   
   10.同步系统菜单                                                 ok
   
@@ -83,8 +83,13 @@ menuServer(菜单管理)
 	  items:
 	  [metaMenusObj]
 	}
+	19. 批量更新菜单                                             ok
+	20. 批量删除菜单下的操作。                                     
 	
-	
+	request:
+	{
+	  menuUUIDs:['',''],
+	}
   
   1、菜单组织增加ownerUUID，实现多种类型映射 (区别app与业态)
 	2、增加菜单别名资源 

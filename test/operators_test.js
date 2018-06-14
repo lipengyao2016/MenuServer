@@ -25,8 +25,8 @@ describe('operator Test Case:',()=>{
         metaOperatorUUID:'sYL7DjzBos6JFbQwnXb1xA',
     },
         {
-            menuUUID: '2aBWApoB2BsrEOheFEuXHg',
-            metaOperatorUUID:'yrA5iZrWKdv7MCLARhFrcg',
+          menuUUID: '2aBWApoB2BsrEOheFEuXHg',
+          metaOperatorUUID:'yrA5iZrWKdv7MCLARhFrcg',
         },
     ];
 
@@ -99,6 +99,24 @@ describe('operator Test Case:',()=>{
                 //expect(uriReg.applicationURIReg.test(res.headers['location'])).to.be.true;
             });
         });
+
+        it('success batchDeleteByMenus an operator', function () {
+            //this.timeout(0);
+            // operatorUUID = '7O1PwyXNuUOEXxvRfvbyrQ';
+            let updateInfo = {
+                menuUUIDs:['Gw9ByeNPFhvtxehpON9DSg','2aBWApoB2BsrEOheFEuXHg','FbdiOQsNdBqy9bTjYDjcbw'],
+            };
+            return request.post(`${tenantURL}/clearOperatorsByMenus`,updateInfo).then( ( { statusCode,body,headers,request} )=>{
+
+                console.log('operators test update   :' + JSON.stringify(body,null,2));
+
+                expect(statusCode).to.equal(200);
+                expect(headers['content-type']).to.equal('application/json; charset=utf-8');
+                expect(body.description).to.equal(updateInfo.description);
+                //expect(uriReg.applicationURIReg.test(res.headers['location'])).to.be.true;
+            });
+        });
+
     });
     describe('list test case:', function () {
 

@@ -711,6 +711,35 @@ post
 }
 ```
 
+
+
+###1.清空操作
+
+http://localhost:6001/api/v1/clearOperatorsByMenus
+
+
+**http**
+
+post
+
+**request**
+
+
+```
+{
+                menuUUIDs:['Gw9ByeNPFhvtxehpON9DSg','2aBWApoB2BsrEOheFEuXHg','FbdiOQsNdBqy9bTjYDjcbw'],
+ }
+```
+
+**response**
+
+```
+{
+  "ret": true
+}
+```
+
+
 #MetaMenu:
 
 MetaMenu资源是指由前端系统开发的功能模块菜单。
