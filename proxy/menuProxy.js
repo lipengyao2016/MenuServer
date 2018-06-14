@@ -7,7 +7,7 @@ const devUtils = require('develop-utils');
 const restRouterModel = require('rest-router-model');
 let BaseBusiness = restRouterModel.BaseBusiness;
 let getSchema = restRouterModel.getSchema;
-const BaseProxyTranction = require('./baseProxyTranction');
+const BaseProxyTranction = require('componet-service-framework').baseProxyTranction;
 
 let parse = restRouterModel.parse;
 

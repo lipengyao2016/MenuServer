@@ -8,7 +8,7 @@ const restRouterModel = require('rest-router-model');
 let BaseBusiness = restRouterModel.BaseBusiness;
 let getSchema = restRouterModel.getSchema;
 let parse = restRouterModel.parse;
-const BaseProxyTranction = require('./baseProxyTranction');
+const BaseProxyTranction = require('componet-service-framework').baseProxyTranction;
 
 class MetaMenuProxy extends  BaseProxyTranction
 {
