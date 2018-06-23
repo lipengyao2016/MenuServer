@@ -21,6 +21,7 @@
     "common-request": "0.0.1",
     "componet-service-framework": "^1.1.0",
     "develop-utils": "0.0.6",
+    "eureka-js-client": "^4.4.1",
     "ioredis": "^3.2.2",
     "koa": "^2.4.1",
     "koa-json-url-expand": "^1.0.1",
@@ -28,6 +29,7 @@
     "koa-qs": "^2.0.0",
     "log4js": "^1.1.1",
     "mocha": "^4.1.0",
+    "node-apollo": "^1.1.8",
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
     "rest-router-model": "^1.6.1"

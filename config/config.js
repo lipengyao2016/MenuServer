@@ -1,5 +1,6 @@
 "use strict";
 const fs = require('fs');
+
 let config = {
     //服务器配置
     server: {
@@ -14,7 +15,7 @@ let config = {
     knex: {
         client: 'mysql',
         connection: {
-            host : '192.168.7.26',
+            host : '192.168.7.28',
             user : 'root',
             password : '123456',
             database : 'MenuServerDB',
@@ -48,11 +49,18 @@ let config = {
         // 缓存开关控制
         open : false,
         // 缓存失效时间,单位ms
-        time : 1000,
+        time : 2000,
+    },
+
+    eurekaServer:
+    {
+        host : '192.168.7.29',
+        port : 9763,
     }
 };
 
 // 从全局上层CommonConfig中读取环境变量
+
 try {
     const commonConfig = require('../../CommonConfig/serverConfig');
     let {server_domain=null,ThirdServer_domain=null,knex_connection=null,redis=null,kafkaConfig=null}=commonConfig;
@@ -86,6 +94,7 @@ catch(e) {
 
 
 
+
 //从环境变量中覆盖配置参数，及默认优先使用环境变量参数
 function readEnvParams( obj , prefix = null) {
     prefix = prefix ? prefix+'_' :'';
@@ -105,4 +114,23 @@ function readEnvParams( obj , prefix = null) {
 }
 readEnvParams(config);
 
+
+
+
+let configServerInfo = {
+    configServerUrl:'http://192.168.7.28:8078/',
+};
+readEnvParams(configServerInfo);
+console.log('read configServer URL from env configServerInfo:' + JSON.stringify(configServerInfo));
+
+async  function readConfigServerParams() {
+    const apollConfig = require('../common/apollConfig');
+    const packageConfig = require('../package');
+    return await  apollConfig.readConfigFromConfigServer(packageConfig.name,configServerInfo.configServerUrl,config);
+}
+
+config.readConfigServerParams = readConfigServerParams;
+
 module.exports = config;
+
+

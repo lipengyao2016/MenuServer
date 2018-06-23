@@ -182,8 +182,8 @@ describe('menus Test Case:',()=>{
                                createdAt:'[,2018-04-18 18:13:28]'*/
                 //menusPackageUUID:'xAdNYJaUdyyXyFmd1rFkUg',
                // orderBy:'uiOrder DESC',
-                ownerHref:'http://localhost:5000/api/v1.0.0/applications/BQZNqVpEbFxyZ7ayW7x2yA',
-                expand:'operators',
+               // ownerHref:'http://localhost:5000/api/v1.0.0/applications/BQZNqVpEbFxyZ7ayW7x2yA',
+               // expand:'operators',
             };
             return request.get(`${url}/menus`,qs).then( ( { statusCode,body,headers,request} )=>{
 
