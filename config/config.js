@@ -63,7 +63,7 @@ let config = {
 
 try {
     const commonConfig = require('../../CommonConfig/serverConfig');
-    let {server_domain=null,ThirdServer_domain=null,knex_connection=null,redis=null,kafkaConfig=null}=commonConfig;
+    let {server_domain=null,ThirdServer_domain=null,knex_connection=null,redis=null,kafkaConfig=null,configServerUrl=null}=commonConfig;
 
     if(server_domain){config.server.domain = server_domain;}
     if(ThirdServer_domain && config.ThirdServerByCommonConfig){
@@ -86,6 +86,12 @@ try {
             config.kafka[key] = kafkaConfig[key];
         });
     }
+
+    if(configServerUrl && config.configServerUrl)
+    {
+        config.configServerUrl = configServerUrl;
+    }
+
     console.log('The read common config. config:' + JSON.stringify(config));
 }
 catch(e) {
@@ -124,7 +130,7 @@ readEnvParams(configServerInfo);
 console.log('read configServer URL from env configServerInfo:' + JSON.stringify(configServerInfo));
 
 async  function readConfigServerParams() {
-    const apollConfig = require('../common/apollConfig');
+    const apollConfig = require('componet-service-framework').apollConfig;
     const packageConfig = require('../package');
     return await  apollConfig.readConfigFromConfigServer(packageConfig.name,configServerInfo.configServerUrl,config);
 }

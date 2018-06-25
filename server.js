@@ -14,7 +14,6 @@ config.readConfigServerParams().then(data=>{
 
 
 
-
 // 依次从系统环境变量、配置文件（配置环境或文件）读取服务端口，默认为3000
 
     const server_name = package.name;
@@ -84,7 +83,7 @@ config.readConfigServerParams().then(data=>{
         port: port
     };
 
-    const EurekaClientConfig = require('./eurekaClientConfig');
+    const EurekaClientConfig = require('componet-service-framework').eurekaClientConfig;
     let eurekaClient = new EurekaClientConfig(server_name,config);
 
     restRouterModel.koaRestRouter(resourceConfig, extendBusinesses, config.knex, options).then(koa_router=>{
